@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="pt-PT" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bloqueio: nada carrega de fora, nenhum formulário submete para lado algum.
+       img-src 'self' data: permite a foto de perfil como ficheiro local OU base64 -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="index, follow">
+  <meta name="description" data-i18n="metaDesc" content="ethics.click — freelancer independente. Hacking ético, OSINT, forense digital e segurança operacional: formação e soluções.">
+  <title data-i18n="siteTitle">ethics.click — Cibersegurança & Privacidade</title>
+  <!-- Favicon embutido (data URI, sem pedido externo) -->
+  <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='%233f9e80'/%3E%3Ccircle%20cx='32'%20cy='32'%20r='11'%20fill='%23fcfbf9'/%3E%3C/svg%3E">
+
+<style>
+/* ---- Tema -------------------------------------------------------------- */
+:root {
+  --bg: #f6f5f2;
+  --surface: #fcfbf9;
+  --text: #2e2d29;
+  --muted: #71706a;
+  --accent: #3f9e80;
+  --border: #e4e2dc;
+  --shadow-sm: 0 1px 2px rgba(30, 28, 22, .04), 0 2px 8px rgba(30, 28, 22, .05);
+  --shadow-md: 0 2px 4px rgba(30, 28, 22, .05), 0 10px 28px rgba(30, 28, 22, .08);
+  --radius: 12px;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141416;
+    --surface: #1c1c1f;
+    --text: #e9e9e6;
+    --muted: #9a9a93;
+    --border: #2a2a2f;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, .25), 0 2px 10px rgba(0, 0, 0, .25);
+    --shadow-md: 0 2px 6px rgba(0, 0, 0, .3), 0 12px 32px rgba(0, 0, 0, .35);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141416;
+  --surface: #1c1c1f;
+  --text: #e9e9e6;
+  --muted: #9a9a93;
+  --border: #2a2a2f;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, .25), 0 2px 10px rgba(0, 0, 0, .25);
+  --shadow-md: 0 2px 6px rgba(0, 0, 0, .3), 0 12px 32px rgba(0, 0, 0, .35);
+  color-scheme: dark;
+}
+
+/* ---- Base -------------------------------------------------------------- */
+* { box-sizing: border-box; margin: 0; }
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  transition: background .25s ease, color .25s ease;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.skip {
+  position: absolute; left: -999px; top: 0;
+  background: var(--accent); color: #fff; padding: .5rem 1rem; border-radius: var(--radius);
+}
+.skip:focus { left: 1rem; top: 1rem; z-index: 10; }
+
+/* ---- Cabeçalho --------------------------------------------------------- */
+.top {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  max-width: 60rem; margin: 0 auto; padding: 1.25rem 1.5rem;
+  position: sticky; top: 0;
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  z-index: 20;
+}
+.brand { display: flex; align-items: center; gap: .5rem; font-weight: 700; color: var(--text); }
+.dot { width: .65rem; height: .65rem; border-radius: 50%; background: var(--accent); }
+
+.top nav { display: flex; gap: 1.25rem; }
+.top nav a { color: var(--muted); font-size: .95rem; }
+.top nav a:hover { color: var(--text); text-decoration: none; }
+
+.header-right { display: flex; align-items: center; gap: .6rem; }
+.controls { display: flex; gap: .5rem; }
+.controls button {
+  font: inherit; cursor: pointer;
+  background: var(--surface); color: var(--text);
+  border: 1px solid var(--border); border-radius: 999px;
+  padding: .3rem .8rem; min-width: 2.4rem;
+  box-shadow: var(--shadow-sm);
+}
+.controls button:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Botão hambúrguer (só aparece no mobile) */
+.menu-btn {
+  display: none;
+  font: inherit; cursor: pointer;
+  background: var(--surface); color: var(--text);
+  border: 1px solid var(--border); border-radius: 999px;
+  padding: .3rem .7rem; font-size: 1.1rem; line-height: 1;
+  box-shadow: var(--shadow-sm);
+}
+.menu-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ---- Secções ----------------------------------------------------------- */
+main { max-width: 60rem; margin: 0 auto; padding: 0 1.5rem 4rem; }
+section { padding: 3.5rem 0 1rem; scroll-margin-top: 5rem; }
+h2 { font-size: 1.4rem; margin-bottom: 1.5rem; letter-spacing: -.01em; }
+
+.hero { padding: 5rem 0 1rem; max-width: 46rem; }
+.hero h1 { font-size: clamp(1.9rem, 4vw, 2.8rem); line-height: 1.15; letter-spacing: -.02em; }
+.hero p { margin-top: 1rem; color: var(--muted); font-size: 1.05rem; }
+
+.grid {
+  display: grid; gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+}
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.4rem;
+  box-shadow: var(--shadow-sm);
+  transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+.card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.card h3 { font-size: 1.05rem; margin: .35rem 0 .5rem; }
+.card time { color: var(--muted); font-size: .8rem; }
+.card p { color: var(--muted); font-size: .95rem; }
+.card .tag {
+  display: inline-block; margin-top: .75rem;
+  color: var(--accent); font-size: .8rem; font-weight: 600;
+}
+
+/* Sobre: foto de perfil + texto */
+.about-layout {
+  display: flex; align-items: stretch; gap: 2rem;
+}
+/* O círculo estica-se à altura do bloco de texto e é sempre perfeito
+   (largura = altura, garantida pelo aspect-ratio) */
+.about-photo {
+  align-self: stretch;
+  width: auto; height: auto;
+  aspect-ratio: 1 / 1;
+  max-width: 20rem;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--accent);
+  box-shadow: var(--shadow-md);
+  -webkit-user-select: none; user-select: none;
+  -webkit-touch-callout: none;
+}
+.about-photo img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;           /* impede "guardar imagem como…" no elemento */
+  -webkit-user-drag: none;
+  -webkit-user-select: none; user-select: none;
+  transition: opacity .25s ease;  /* transição suave ao trocar de tema */
+}
+.about-photo.pixelated img { image-rendering: pixelated; }
+.about-texts { min-width: 0; }
+.about-text { max-width: 46rem; color: var(--muted); }
+.about-text + .about-text { margin-top: 1rem; }
+
+/* Blogue: slider horizontal */
+.slider-wrap {
+  display: flex; align-items: stretch; gap: .75rem;
+}
+.slider {
+  display: flex; gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: .25rem .25rem 1rem;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+.blog-card {
+  flex: 0 0 min(19rem, 82vw);
+  scroll-snap-align: start;
+  display: flex; flex-direction: column;
+}
+.blog-card h3 a { color: var(--text); }
+.blog-card h3 a:hover { color: var(--accent); text-decoration: none; }
+.slider-btn {
+  align-self: center;
+  flex: 0 0 auto;
+  font: inherit; cursor: pointer;
+  background: var(--surface); color: var(--muted);
+  border: 1px solid var(--border); border-radius: 50%;
+  width: 2.6rem; height: 2.6rem; font-size: 1.2rem; line-height: 1;
+  box-shadow: var(--shadow-sm);
+}
+.slider-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Contacto */
+.contact-list { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); }
+.contact-method strong { display: block; font-size: 1rem; margin-bottom: .35rem; }
+.cta {
+  display: inline-block; margin-top: .8rem;
+  background: var(--accent); color: #fff;
+  padding: .45rem 1rem; border-radius: 999px;
+  font: inherit; font-size: .9rem; font-weight: 600; border: none; cursor: pointer;
+  box-shadow: var(--shadow-sm);
+}
+a.cta:hover, button.cta:hover { text-decoration: none; filter: brightness(1.08); box-shadow: var(--shadow-md); }
+.reveal { margin-top: .8rem; font-weight: 600; font-size: 1rem; word-break: break-all; }
+.reveal a { color: var(--text); border-bottom: 1px dashed var(--accent); }
+.reveal a:hover { color: var(--accent); text-decoration: none; }
+.pros, .cons { list-style: none; padding: 0; margin: .8rem 0 0; font-size: .85rem; }
+.pros li::before { content: "✓ "; color: var(--accent); }
+.cons li::before { content: "✗ "; color: var(--muted); }
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 1.5rem; text-align: center;
+  color: var(--muted); font-size: .85rem;
+}
+
+/* ---- Impressão: a foto sai pixelizada ----------------------------------- */
+@media print {
+  .about-photo { border-color: var(--muted); }
+}
+
+/* ---- Mobile ------------------------------------------------------------ */
+@media (max-width: 720px) {
+  .menu-btn { display: inline-block; }
+
+  .top { flex-wrap: wrap; padding: 1rem 1.25rem; }
+  .top nav {
+    display: none;
+    order: 3;
+    flex-basis: 100%;
+    flex-direction: column;
+    gap: .25rem;
+    padding: .75rem 0 .25rem;
+    border-top: 1px solid var(--border);
+    margin-top: .75rem;
+  }
+  .top nav.open { display: flex; }
+  .top nav a { padding: .5rem .25rem; font-size: 1rem; }
+
+  .hero { padding: 3rem 0 .5rem; }
+  section { padding: 2.5rem 0 1rem; }
+  main { padding: 0 1rem 3rem; }
+
+  .contact-list { grid-template-columns: 1fr; }
+
+  /* Em coluna, o círculo volta a tamanho fixo e centrado */
+  .about-layout { flex-direction: column; align-items: center; }
+  .about-photo {
+    align-self: center;
+    width: 10rem; height: 10rem;
+    aspect-ratio: auto;
+  }
+
+  .slider-btn { display: none; } /* no mobile arrasta-se com o dedo */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+  .slider { scroll-behavior: auto; }
+  .about-photo img { transition: none !important; }
+}
+</style>
+</head>
+<body>
+  <a class="skip" href="#main" data-i18n="skip">Saltar para o conteúdo</a>
+
+  <header class="top">
+    <a class="brand" href="#home"><span class="dot" aria-hidden="true"></span><span data-i18n="brand">ethics.click</span></a>
+    <nav id="mainNav" aria-label="Main">
+      <a href="#services" data-i18n="navServices">Serviços</a>
+      <a href="#about" data-i18n="navAbout">Sobre</a>
+      <a href="#blog" data-i18n="navBlog">Blogue</a>
+      <a href="#contact" data-i18n="navContact">Contacto</a>
+    </nav>
+    <div class="header-right">
+      <div class="controls">
+        <button id="langBtn" type="button" aria-label="Mudar o idioma">PT</button>
+        <button id="themeBtn" type="button" data-i18n-aria="themeLabel" aria-label="Alternar modo escuro">◐</button>
+      </div>
+      <button class="menu-btn" id="menuBtn" type="button" data-i18n-aria="menuLabel" aria-label="Abrir menu" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Herói -->
+    <section id="home" class="hero">
+      <h1 data-i18n="heroTitle">Segurança e privacidade, ensinadas e aplicadas na prática.</h1>
+      <p data-i18n="heroSub">Freelancer independente em cibersegurança, hacking ético, OSINT avançado, forense digital e segurança operacional. Ensino à distância ou presencialmente e construo planos e soluções práticas que protegem as pessoas e os seus dados — particulares ou organizações.</p>
+    </section>
+
+    <!-- Serviços -->
+    <section id="services">
+      <h2 data-i18n="servicesTitle">Serviços & Formação</h2>
+      <p class="muted" data-i18n="servicesIntro" style="margin-bottom:1.5rem;">Todas as áreas abaixo funcionam como aulas e formação — à distância ou presencialmente — e como planos e soluções para particulares ou organizações.</p>
+      <div class="grid">
+        <article class="card">
+          <h3 data-i18n="svc1Title">Hacking Ético & Pentesting</h3>
+          <p data-i18n="svc1Body">Aprenda pentesting com autorização e rigor — ou contrate uma auditoria — para encontrar falhas antes de as encontrarem por si, com relatórios em linguagem clara.</p>
+          <span class="tag" data-i18n="svc1Tag">Aulas à distância ou presenciais · Particulares e organizações</span>
+        </article>
+        <article class="card">
+          <h3 data-i18n="svc2Title">Forense Digital</h3>
+          <p data-i18n="svc2Body">Formação e investigação em forense digital — preservação de evidências, análise de sistemas e reconstrução de incidentes, do primeiro rasto ao relatório final.</p>
+          <span class="tag" data-i18n="svc2Tag">Aulas à distância ou presenciais · Particulares e organizações</span>
+        </article>
+        <article class="card">
+          <h3 data-i18n="svc3Title">OSINT Avançado</h3>
+          <p data-i18n="svc3Body">Recolha e análise de informação de fontes abertas — metodologia, ferramentas e ética — para investigações próprias ou formação avançada.</p>
+          <span class="tag" data-i18n="svc3Tag">Aulas à distância ou presenciais · Particulares e organizações</span>
+        </article>
+        <article class="card">
+          <h3 data-i18n="svc4Title">Segurança Operacional (OPSEC)</h3>
+          <p data-i18n="svc4Body">Planos práticos de OPSEC à medida — avaliação de riscos, hábitos e rotinas que protegem a vida profissional e pessoal de cada pessoa ou equipa.</p>
+          <span class="tag" data-i18n="svc4Tag">Planos personalizados · Particulares e organizações</span>
+        </article>
+        <article class="card">
+          <h3 data-i18n="svc5Title">Hardening & Redes</h3>
+          <p data-i18n="svc5Body">Reforço de sistemas Linux e Android e boas práticas de rede — soluções concretas que cada pessoa ou organização consegue aplicar e manter sozinha.</p>
+          <span class="tag" data-i18n="svc5Tag">Soluções à medida · Particulares e organizações</span>
+        </article>
+        <article class="card">
+          <h3 data-i18n="svc6Title">Privacidade, Direitos Digitais & FLOSS</h3>
+          <p data-i18n="svc6Body">Formação, sensibilização e trabalho de watchdog em defesa da privacidade e dos direitos digitais — com o Software Livre/Open Source (FLOSS) como fundação para a transparência e a segurança orientada pela comunidade.</p>
+          <span class="tag" data-i18n="svc6Tag">Formação e sensibilização · Particulares e organizações</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- Sobre -->
+    <section id="about">
+      <h2 data-i18n="aboutTitle">Sobre</h2>
+      <div class="about-layout">
+        <div class="about-photo" id="photoWrap">
+          <!-- A foto troca sozinha: modo claro usa PERFIL.light, modo escuro usa PERFIL.dark.
+               Pode ser ficheiro local (ex.: "perfil.webp") ou base64.
+               Se falhar a carga, o JS mostra automaticamente a silhueta abaixo. -->
+          <img id="profilePhoto" alt="Fotografia de perfil"
+               data-fallback="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20200%20200'%3E%3Crect%20width='200'%20height='200'%20fill='%233f9e80'/%3E%3Ccircle%20cx='100'%20cy='76'%20r='36'%20fill='%23fcfbf9'/%3E%3Cpath%20d='M38%20172a62%2062%200%200%201%20124%200'%20fill='%23fcfbf9'/%3E%3C/svg%3E">
+        </div>
+        <div class="about-texts">
+          <p class="about-text" data-i18n="aboutP1">Sou freelancer independente por trás da ethics.click. Trabalho em cibersegurança, hacking ético, OSINT avançado, forense digital e segurança operacional — construindo e ensinando soluções práticas que protegem pessoas e os seus dados.</p>
+          <p class="about-text" data-i18n="aboutP2">Acredito na segurança, privacidade e liberdade através da colaboração e da educação — e no Software Livre/Open Source (FLOSS) como fundação para a transparência e a segurança orientada pela comunidade.</p>
+          <p class="about-text" data-i18n="aboutP3">Para lá do trabalho, a vida divide-se entre muitas atividades — profissionais e de lazer. É desse equilíbrio que nasce a minha forma de trabalhar: prática, direta e centrada nas pessoas — em como usam a tecnologia e em qual escolhem usar.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blogue -->
+    <section id="blog">
+      <h2 data-i18n="blogTitle">Blogue</h2>
+      <div class="slider-wrap">
+        <button class="slider-btn" id="blogPrev" type="button" data-i18n-aria="prevLabel" aria-label="Artigo anterior">‹</button>
+        <div class="slider" id="blogTrack" tabindex="0" aria-label="Lista de artigos"></div>
+        <button class="slider-btn" id="blogNext" type="button" data-i18n-aria="nextLabel" aria-label="Artigo seguinte">›</button>
+      </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contact">
+      <h2 data-i18n="contactTitle">Contacto</h2>
+      <!--<p class="muted" data-i18n="contactIntro" style="margin-bottom:1.5rem;">Um clique abre a conversa diretamente — e o contacto fica visível no cartão para poder guardá-lo ou copiá-lo.</p>-->
+      <div class="contact-list">
+        <article class="card contact-method">
+          <strong data-i18n="cmEmailTitle">Email</strong>
+          <p data-i18n="cmEmailDesc">A forma mais simples e universal de chegar até mim.</p>
+          <button class="cta" type="button" data-contact="email" data-i18n="cmEmailCta">Contactar por email →</button>
+          <p class="reveal" id="reveal-email" hidden></p>
+          <ul class="pros">
+            <li data-i18n="cmEmailPro1">Funciona em qualquer dispositivo, sem instalar nada</li>
+            <li data-i18n="cmEmailPro2">Mensagem escrita, arquivável e pesquisável</li>
+            <li data-i18n="cmEmailPro3">Permite anexos e respostas pensadas com calma</li>
+          </ul>
+          <ul class="cons">
+            <li data-i18n="cmEmailCon1">Resposta pode demorar mais</li>
+            <li data-i18n="cmEmailCon2">Metadados ficam visíveis ao fornecedor de email</li>
+          </ul>
+        </article>
+        <article class="card contact-method">
+          <strong data-i18n="cmSignalTitle">Signal</strong>
+          <p data-i18n="cmSignalDesc">Mensagens e chamadas encriptadas de ponta a ponta.</p>
+          <button class="cta" type="button" data-contact="signal" data-i18n="cmSignalCta">Contactar no Signal →</button>
+          <p class="reveal" id="reveal-signal" hidden></p>
+          <ul class="pros">
+            <li data-i18n="cmSignalPro1">Encriptação ponta-a-ponta por predefinição</li>
+            <li data-i18n="cmSignalPro2">Chamadas de voz e vídeo seguras</li>
+            <li data-i18n="cmSignalPro3">Recolha mínima de metadados</li>
+          </ul>
+          <ul class="cons">
+            <li data-i18n="cmSignalCon1">Ambos precisam de ter a aplicação instalada</li>
+            <li data-i18n="cmSignalCon2">Exige criar conta com um número de telefone</li>
+          </ul>
+        </article>
+        <!--<article class="card contact-method">
+          <strong data-i18n="cmPhoneTitle">Telefone (PT)</strong>
+          <p data-i18n="cmPhoneDesc">Para o que é urgente ou precisa de voz, imediatamente.</p>
+          <button class="cta" type="button" data-contact="phone" data-i18n="cmPhoneCta">Ligar agora →</button>
+          <p class="reveal" id="reveal-phone" hidden></p>
+          <ul class="pros">
+            <li data-i18n="cmPhonePro1">Imediato e direto, ideal para urgências</li>
+            <li data-i18n="cmPhonePro2">Não exige instalar aplicações</li>
+          </ul>
+          <ul class="cons">
+            <li data-i18n="cmPhoneCon1">Chamadas e SMS não são encriptadas</li>
+            <li data-i18n="cmPhoneCon2">Expõe o número e fica sujeito a interceção na rede</li>
+          </ul>
+        </article>-->
+      </div>
+    </section>
+    <div style="width: 50%; margin-inline: auto; text-align: center;">
+    <p class="about-text" data-i18n="quote">Sem privacidade, não existe liberdade; sem liberdade, nenhuma segurança merece ser desejada</p>
+    </div>
+  </main>
+
+  <footer>
+    <p><span data-i18n="footerNote">Sem cookies, sem rastreio, sem JavaScript além de um seletor de tema e idioma.</span>
+       © <span id="year">2026</span> <span data-i18n="brand">ethics.click</span></p>
+  </footer>
+
+<script>
+"use strict";
+
+/* ---- Contactos (edite aqui os seus dados reais) -------------------------- */
+const CONTACT = {
+  email: "hello@ethics.click",
+  signalUser: "ethics_click.01",
+  signalUrl: "https://signal.me/#eu/hTSsEJpOLLodu34geTBqpUdqZiQe2-fU-_X-lOOLFdLedxW_fMhMN6EKGKwtjzms",
+  phone: "+351900100100",
+  phonePretty: "+351 9XX XXX XXX"
+};
+
+/* ---- Fotos de perfil (edite aqui) ----------------------------------------
+   A foto do "Sobre" troca automaticamente com o tema:
+   light → usado em modo claro | dark → usado em modo escuro.
+   Pode ser um ficheiro junto ao HTML ou base64.                            */
+const PERFIL = {
+  light: "perfil.webp",
+  dark: "perfil-dark.webp"
+};
+
+/* ---- Blogue -------------------------------------------------------------- */
+const POSTS = [
+  { key: "post1", date: "2026-11-02", url: "/posts/post-one/" },
+  { key: "post2", date: "2026-10-14", url: "/posts/post-two/" },
+  { key: "post3", date: "2026-09-30", url: "/posts/post-three/" }
+];
+
+/* ---- i18n --------------------------------------------------------------- */
+const I18N = {
+  "pt-PT": {
+    siteTitle: "ethics.click",
+    metaDesc: "ethics.click — freelancer independente. Hacking ético, OSINT, forense digital e segurança operacional: formação e soluções.",
+    skip: "Saltar para o conteúdo",
+    brand: "ethics.click",
+    navServices: "Serviços", navAbout: "Sobre", navBlog: "Blogue", navContact: "Contacto",
+    themeLabel: "Alternar modo escuro",
+    menuLabel: "Abrir menu",
+    prevLabel: "Artigo anterior", nextLabel: "Artigo seguinte",
+    heroTitle: "Segurança e privacidade, ensinadas e aplicadas na prática.",
+    heroSub: "Freelancer independente em cibersegurança, hacking ético, OSINT avançado, forense digital e segurança operacional. Ensino à distância ou presencialmente e construo planos e soluções práticas que protegem as pessoas e os seus dados — particulares ou organizações.",
+    servicesTitle: "Serviços & Formação",
+    servicesIntro: "Todas as áreas abaixo funcionam como aulas e formação — à distância ou presencialmente — e como planos e soluções para particulares ou organizações.",
+    svc1Title: "Hacking Ético & Pentesting",
+    svc1Body: "Aprenda pentesting com autorização e rigor — ou contrate uma auditoria — para encontrar falhas antes de as encontrarem por si, com relatórios em linguagem clara.",
+    svc1Tag: "Aulas à distância ou presenciais · Particulares e organizações",
+    svc2Title: "Forense Digital",
+    svc2Body: "Formação e investigação em forense digital — preservação de evidências, análise de sistemas e reconstrução de incidentes, do primeiro rasto ao relatório final.",
+    svc2Tag: "Aulas à distância ou presenciais · Particulares e organizações",
+    svc3Title: "OSINT Avançado",
+    svc3Body: "Recolha e análise de informação de fontes abertas — metodologia, ferramentas e ética — para investigações próprias ou formação avançada.",
+    svc3Tag: "Aulas à distância ou presenciais · Particulares e organizações",
+    svc4Title: "Segurança Operacional (OPSEC)",
+    svc4Body: "Planos práticos de OPSEC à medida — avaliação de riscos, hábitos e rotinas que protegem a vida profissional e pessoal de cada pessoa ou equipa.",
+    svc4Tag: "Planos personalizados · Particulares e organizações",
+    svc5Title: "Hardening & Redes",
+    svc5Body: "Reforço de sistemas Linux e Android e boas práticas de rede — soluções concretas que cada pessoa ou organização consegue aplicar e manter sozinha.",
+    svc5Tag: "Soluções à medida · Particulares e organizações",
+    svc6Title: "Privacidade, Direitos Digitais & FLOSS",
+    svc6Body: "Formação, sensibilização e trabalho de watchdog em defesa da privacidade e dos direitos digitais — com o Software Livre/Open Source (FLOSS) como fundação para a transparência e a segurança orientada pela comunidade.",
+    svc6Tag: "Formação e sensibilização · Particulares e organizações",
+    aboutTitle: "Sobre",
+    aboutP1: "Sou freelancer independente por trás da ethics.click. Trabalho em cibersegurança, hacking ético, OSINT avançado, forense digital e segurança operacional — construindo e ensinando soluções práticas que protegem pessoas e os seus dados.",
+    aboutP2: "Acredito na segurança, privacidade e liberdade através da colaboração e da educação — e no Software Livre/Open Source (FLOSS) como fundação para a transparência e a segurança orientada pela comunidade.",
+    aboutP3: "Para lá do trabalho, a vida divide-se entre muitas atividades — profissionais e de lazer. É desse equilíbrio que nasce a minha forma de trabalhar: prática, direta e centrada nas pessoas — em como usam a tecnologia e em qual escolhem usar.",
+    blogTitle: "Blogue",
+    post1Title: "Segurança operacional para todos",
+    post1Excerpt: "Como aplicar princípios de OPSEC no dia-a-dia — sem paranoias, sem complicações, apenas hábitos que fazem a diferença.",
+    post2Title: "Notas de hardening para Linux",
+    post2Excerpt: "Reforço mínimo de um sistema Linux: contas, rede e atualizações. As três coisas que mais importam, por esta ordem.",
+    post3Title: "FLOSS: segurança orientada pela comunidade",
+    post3Excerpt: "Porque o software livre e open source é a base da transparência — e porque a auditoria coletiva vale mais do que qualquer promessa fechada.",
+    contactTitle: "Contacto",
+    contactIntro: "Um clique abre a conversa diretamente — e o contacto fica visível no cartão para poder guardá-lo ou copiá-lo.",
+    cmEmailTitle: "Email",
+    cmEmailCta: "Contactar por email →",
+    cmEmailDesc: "A forma mais simples e universal de chegar até mim.",
+    cmEmailPro1: "Funciona em qualquer dispositivo, sem instalar nada",
+    cmEmailPro2: "Mensagem escrita, arquivável e pesquisável",
+    cmEmailPro3: "Permite anexos e respostas pensadas com calma",
+    cmEmailCon1: "Resposta pode demorar mais",
+    cmEmailCon2: "Metadados ficam visíveis ao fornecedor de email",
+    cmSignalTitle: "Signal",
+    cmSignalCta: "Contactar no Signal →",
+    cmSignalDesc: "Mensagens e chamadas encriptadas de ponta a ponta.",
+    cmSignalPro1: "Encriptação ponta-a-ponta por predefinição",
+    cmSignalPro2: "Chamadas de voz e vídeo seguras",
+    cmSignalPro3: "Recolha mínima de metadados",
+    cmSignalCon1: "Ambos precisam de ter a aplicação instalada",
+    cmSignalCon2: "Exige criar conta com um número de telefone",
+    cmPhoneTitle: "Telefone (PT)",
+    cmPhoneCta: "Ligar agora →",
+    cmPhoneDesc: "Para o que é urgente ou precisa de voz, imediatamente.",
+    cmPhonePro1: "Imediato e direto, ideal para urgências",
+    cmPhonePro2: "Não exige instalar aplicações",
+    cmPhoneCon1: "Chamadas e SMS não são encriptadas",
+    cmPhoneCon2: "Expõe o número e fica sujeito a interceção na rede",
+    quote: "Sem privacidade, não existe liberdade; sem liberdade, nenhuma segurança merece ser desejada",
+    footerNote: "Sem cookies, sem rastreio, sem JavaScript além de um seletor de tema e idioma."
+  },
+  "en-US": {
+    siteTitle: "ethics.click",
+    metaDesc: "ethics.click — independent freelancer. Ethical hacking, OSINT, digital forensics and operational security: training and solutions.",
+    skip: "Skip to content",
+    brand: "ethics.click",
+    navServices: "Services", navAbout: "About", navBlog: "Blog", navContact: "Contact",
+    themeLabel: "Toggle dark mode",
+    menuLabel: "Open menu",
+    prevLabel: "Previous post", nextLabel: "Next post",
+    heroTitle: "Security and privacy, taught and applied hands-on.",
+    heroSub: "Independent freelancer in cybersecurity, ethical hacking, advanced OSINT, digital forensics and operational security. I teach remotely or in person, and build practical plans and solutions that protect people and their data — individuals and organisations alike.",
+    servicesTitle: "Services & Training",
+    servicesIntro: "Every area below works as classes and training — remote or in person — and as plans and solutions for individuals or organisations.",
+    svc1Title: "Ethical Hacking & Pentesting",
+    svc1Body: "Learn authorized, rigorous penetration testing — or hire an audit — to find flaws before someone else does, with plain-language reports.",
+    svc1Tag: "Classes remote or in person · Individuals and organisations",
+    svc2Title: "Digital Forensics",
+    svc2Body: "Training and investigation in digital forensics — evidence preservation, system analysis and incident reconstruction, from the first trace to the final report.",
+    svc2Tag: "Classes remote or in person · Individuals and organisations",
+    svc3Title: "Advanced OSINT",
+    svc3Body: "Open-source intelligence gathering and analysis — methodology, tools and ethics — for your own investigations or advanced training.",
+    svc3Tag: "Classes remote or in person · Individuals and organisations",
+    svc4Title: "Operational Security (OPSEC)",
+    svc4Body: "Tailored, practical OPSEC plans — risk assessment, habits and routines that protect the professional and personal life of each person or team.",
+    svc4Tag: "Tailored plans · Individuals and organisations",
+    svc5Title: "Hardening & Networking",
+    svc5Body: "Hardening for Linux and Android systems and network best practices — concrete solutions each person or organisation can apply and maintain themselves.",
+    svc5Tag: "Tailored solutions · Individuals and organisations",
+    svc6Title: "Privacy, Digital Rights & FLOSS",
+    svc6Body: "Training, awareness and watchdog work in defence of privacy and digital rights — with Free/Libre and Open Source Software as the foundation for transparency and community-driven security.",
+    svc6Tag: "Training and awareness · Individuals and organisations",
+    aboutTitle: "About",
+    aboutP1: "I'm an independent freelancer behind ethics.click. I work in cybersecurity, ethical hacking, advanced OSINT, digital forensics and operational security — building and teaching practical solutions that protect people and their data.",
+    aboutP2: "I believe in security, privacy and freedom through collaboration and education — and in Free/Libre and Open Source Software as the foundation for transparency and community-driven security.",
+    aboutP3: "Beyond work, life is split across many activities — professional and leisure alike. That balance shapes how I work: practical, direct and centred on people — on how they use technology, and which technology they choose to use.",
+    blogTitle: "Blog",
+    post1Title: "Operational security for everyone",
+    post1Excerpt: "Applying OPSEC principles to daily life — no paranoia, no complexity, just habits that make a difference.",
+    post2Title: "Linux hardening notes",
+    post2Excerpt: "Minimal hardening for a Linux system: accounts, networking and updates. The three things that matter most, in that order.",
+    post3Title: "FLOSS: community-driven security",
+    post3Excerpt: "Why free and open source software is the foundation of transparency — and why collective auditing beats any closed promise.",
+    contactTitle: "Contact",
+    contactIntro: "One click opens the conversation directly — and the contact stays visible on the card so you can save or copy it.",
+    cmEmailTitle: "Email",
+    cmEmailCta: "Contact by email →",
+    cmEmailDesc: "The simplest and most universal way to reach me.",
+    cmEmailPro1: "Works on any device, nothing to install",
+    cmEmailPro2: "Written message, archivable and searchable",
+    cmEmailPro3: "Supports attachments and well-thought replies",
+    cmEmailCon1: "Reply may take longer",
+    cmEmailCon2: "Metadata is visible to the email provider",
+    cmSignalTitle: "Signal",
+    cmSignalCta: "Contact on Signal →",
+    cmSignalDesc: "End-to-end encrypted messages and calls.",
+    cmSignalPro1: "End-to-end encryption by default",
+    cmSignalPro2: "Secure voice and video calls",
+    cmSignalPro3: "Minimal metadata collection",
+    cmSignalCon1: "Both sides need the app installed",
+    cmSignalCon2: "Requires creating an account with a phone number",
+    cmPhoneTitle: "Phone (PT)",
+    cmPhoneCta: "Call now →",
+    cmPhoneDesc: "For anything urgent or that needs a voice, right away.",
+    cmPhonePro1: "Immediate and direct, ideal for emergencies",
+    cmPhonePro2: "No app installation required",
+    cmPhoneCon1: "Calls and SMS are not encrypted",
+    cmPhoneCon2: "Exposes the number and is subject to network interception",
+    quote: "Without privacy, there is no freedom; without freedom, there is no security worth having.",
+    footerNote: "No cookies, no tracking, no JavaScript beyond a theme and language toggle."
+  }
+};
+
+const $ = (sel) => document.querySelector(sel);
+let currentLang = "pt-PT";
+
+/* ---- Blogue: renderização do slider ------------------------------------- */
+function renderBlog(lang) {
+  const dict = I18N[lang] || I18N["en-US"];
+  const track = $("#blogTrack");
+  track.innerHTML = "";
+  for (const p of POSTS) {
+    const card = document.createElement("article");
+    card.className = "card blog-card";
+    card.innerHTML =
+      '<time datetime="' + p.date + '">' + p.date + '</time>' +
+      '<h3><a href="' + p.url + '">' + dict[p.key + "Title"] + '</a></h3>' +
+      '<p>' + dict[p.key + "Excerpt"] + '</p>';
+    track.appendChild(card);
+  }
+}
+
+/* ---- Idioma -------------------------------------------------------------- */
+function setLang(lang, persist = true) {
+  const dict = I18N[lang] || I18N["en-US"];
+  currentLang = lang === "pt-PT" ? "pt-PT" : "en-US";
+  document.documentElement.lang = currentLang;
+  document.title = dict.siteTitle;
+  for (const el of document.querySelectorAll("[data-i18n]")) {
+    const key = el.getAttribute("data-i18n");
+    if (dict[key]) el.textContent = dict[key];
+  }
+  for (const el of document.querySelectorAll("[data-i18n-aria]")) {
+    const key = el.getAttribute("data-i18n-aria");
+    if (dict[key]) el.setAttribute("aria-label", dict[key]);
+  }
+  $("#langBtn").textContent = currentLang === "pt-PT" ? "EN" : "PT";
+  renderBlog(currentLang);
+  if (persist) localStorage.setItem("lang", currentLang);
+}
+
+/* ---- Tema ---------------------------------------------------------------- */
+const mqDark = matchMedia("(prefers-color-scheme: dark)");
+
+/* Tema efetivamente visível: o escolhido, ou o do sistema se estiver em "auto" */
+function effectiveDark() {
+  const t = document.documentElement.dataset.theme || "auto";
+  return t === "dark" || (t === "auto" && mqDark.matches);
+}
+
+function cycleTheme() {
+  const order = ["auto", "dark", "light"];
+  const current = document.documentElement.dataset.theme || "auto";
+  const idx = order.indexOf(current) === -1 ? 0 : order.indexOf(current);
+  const nextTheme = order[(idx + 1) % order.length];
+  document.documentElement.dataset.theme = nextTheme;
+  localStorage.setItem("theme", nextTheme);
+  applyPhotoForTheme(); // a foto acompanha o novo tema
+}
+
+/* ---- Slider do blogue ---------------------------------------------------- */
+function slideBy(dir) {
+  const track = $("#blogTrack");
+  const card = track.querySelector(".blog-card");
+  const step = card ? card.offsetWidth + 16 : 320;
+  track.scrollBy({ left: dir * step, behavior: "smooth" });
+}
+
+/* ---- Contacto: um clique revela o contacto e comunica diretamente -------- */
+function buildContactLink(type) {
+  const a = document.createElement("a");
+  if (type === "email") {
+    a.href = "mailto:" + CONTACT.email;
+    a.textContent = CONTACT.email;
+  } else if (type === "signal") {
+    a.href = CONTACT.signalUrl;
+    a.textContent = CONTACT.signalUser;
+  } else if (type === "phone") {
+    a.href = "tel:" + CONTACT.phone;
+    a.textContent = CONTACT.phonePretty;
+  }
+  return a;
+}
+
+/* ---- Foto de perfil protegida -------------------------------------------- */
+let photoFailedOnce = false; // evita loop infinito se também o fallback falhar
+
+function applyPhotoForTheme() {
+  const img = $("#profilePhoto");
+  if (!img || photoFailedOnce) return;
+  const wanted = effectiveDark() ? PERFIL.dark : PERFIL.light;
+  if (img.dataset.current === wanted) return; // já é a certa
+  img.dataset.current = wanted;
+  img.src = wanted;
+}
+
+function setupPhotoProtection() {
+  const img = $("#profilePhoto");
+  const wrap = $("#photoWrap");
+  if (!img || !wrap) return;
+  const FALLBACK = img.dataset.fallback;
+  const BLOCK_SIZE = 16;
+
+  // Se a foto do tema não carregar, mostra a silhueta (uma vez só)
+  img.addEventListener("error", () => {
+    if (!photoFailedOnce) {
+      photoFailedOnce = true;
+      img.src = FALLBACK;
+    }
+  });
+
+  // Sem menu de contexto, sem arrastar
+  wrap.addEventListener("contextmenu", (e) => e.preventDefault());
+  wrap.addEventListener("dragstart", (e) => e.preventDefault());
+
+  // Foto inicial conforme o tema atual
+  applyPhotoForTheme();
+
+  // Se o sistema mudar de tema enquanto o site está em "auto", acompanha
+  mqDark.addEventListener("change", () => {
+    if ((document.documentElement.dataset.theme || "auto") === "auto") applyPhotoForTheme();
+  });
+
+  window.addEventListener("beforeprint", () => {
+    try {
+      const tiny = document.createElement("canvas");
+      tiny.width = BLOCK_SIZE; tiny.height = BLOCK_SIZE;
+      const ctx = tiny.getContext("2d");
+      ctx.drawImage(img, 0, 0, BLOCK_SIZE, BLOCK_SIZE);
+      img.src = tiny.toDataURL();
+      wrap.classList.add("pixelated");
+    } catch (_) { /* se o canvas falhar, a foto simplesmente não é alterada */ }
+  });
+
+  window.addEventListener("afterprint", () => {
+    wrap.classList.remove("pixelated");
+    photoFailedOnce = false;         // pode voltar a tentar as fotos do tema
+    img.dataset.current = "";        // força recarga da foto do tema atual
+    applyPhotoForTheme();
+  });
+}
+
+/* ---- Arranque ------------------------------------------------------------ */
+document.addEventListener("DOMContentLoaded", () => {
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme) document.documentElement.dataset.theme = savedTheme;
+
+  const savedLang = localStorage.getItem("lang");
+  const browserLang = navigator.language?.toLowerCase().startsWith("pt") ? "pt-PT" : "en-US";
+  setLang(savedLang === "pt-PT" ? "pt-PT" : (savedLang === "en-US" ? "en-US" : browserLang), Boolean(savedLang));
+
+  $("#langBtn").addEventListener("click", () =>
+    setLang(currentLang === "pt-PT" ? "en-US" : "pt-PT"));
+
+  $("#themeBtn").addEventListener("click", cycleTheme);
+  $("#year").textContent = new Date().getFullYear();
+
+  // Menu mobile
+  const nav = $("#mainNav"), menuBtn = $("#menuBtn");
+  menuBtn.addEventListener("click", () => {
+    const open = nav.classList.toggle("open");
+    menuBtn.setAttribute("aria-expanded", String(open));
+    menuBtn.textContent = open ? "✕" : "☰";
+  });
+  nav.addEventListener("click", (e) => {
+    if (e.target.tagName === "A") {
+      nav.classList.remove("open");
+      menuBtn.setAttribute("aria-expanded", "false");
+      menuBtn.textContent = "☰";
+    }
+  });
+
+  // Slider do blogue
+  $("#blogPrev").addEventListener("click", () => slideBy(-1));
+  $("#blogNext").addEventListener("click", () => slideBy(1));
+
+  // Contactos: revela o contacto em definitivo e aciona a comunicação direta
+  for (const btn of document.querySelectorAll(".cta[data-contact]")) {
+    btn.addEventListener("click", () => {
+      const type = btn.dataset.contact;
+      const target = document.getElementById("reveal-" + type);
+      if (!target.hidden) return;
+      const link = buildContactLink(type);
+      target.replaceChildren(link);
+      target.hidden = false;
+      btn.hidden = true;
+      link.click();
+    });
+  }
+
+  // Proteção da foto de perfil (+ troca por tema)
+  setupPhotoProtection();
+});
+</script>
+</body>
+</html>
