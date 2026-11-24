@@ -2,15 +2,17 @@
 <html lang="pt-PT" data-theme="auto">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Bloqueio: nada carrega de fora, nenhum formulário submete para lado algum.
-       img-src 'self' data: permite a foto de perfil como ficheiro local OU base64 -->
   <meta http-equiv="Content-Security-Policy"
-        content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+        content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="referrer" content="no-referrer">
   <meta name="robots" content="index, follow">
   <meta name="description" data-i18n="metaDesc" content="ethics.click — freelancer independente. Hacking ético, OSINT, forense digital e segurança operacional: formação e soluções.">
-  <title data-i18n="siteTitle">ethics.click — Cibersegurança & Privacidade</title>
+  <title data-i18n="siteTitle">ethics.click — Cibersegurança &amp; Privacidade</title>
+  <!-- Bloqueio total: nada carrega de fora, nenhum formulário submete para lado algum.
+       script/style inline permitidos porque TODO o código vive nesta página.
+       img-src 'self' data: permite a foto de perfil como ficheiro local OU base64.
+       Nota: frame-ancestors só funciona como cabeçalho HTTP (servidor), não em meta. -->
   <!-- Favicon embutido (data URI, sem pedido externo) -->
   <link rel="icon" type="image/svg+xml"
         href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='%233f9e80'/%3E%3Ccircle%20cx='32'%20cy='32'%20r='11'%20fill='%23fcfbf9'/%3E%3C/svg%3E">
@@ -184,17 +186,60 @@ h2 { font-size: 1.4rem; margin-bottom: 1.5rem; letter-spacing: -.01em; }
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  padding: .25rem .25rem 1rem;
+  /* metade do card de cada lado (card = 30rem) + mínimo em ecrãs pequenos,
+     para o primeiro e último artigos conseguirem centrar */
+  padding: .25rem max(calc(50% - 15rem), 1rem);
+  padding-bottom: 1rem;
   scrollbar-width: thin;
   -webkit-overflow-scrolling: touch;
 }
 .blog-card {
-  flex: 0 0 min(19rem, 82vw);
-  scroll-snap-align: start;
+  flex: 0 0 min(30rem, 92vw);
+  scroll-snap-align: center;   /* cada artigo engata centrado */
   display: flex; flex-direction: column;
+  padding: 1.8rem;
+  min-height: 20rem;
+  text-align: center;        /* centra o texto dentro de cada elemento */
+  align-items: center;       /* centra os blocos (h3, p, time) no card */
+}
+.blog-card time {
+  order: 4;
+  margin-top: .4rem;           /* colada ao botão */
+  align-self: center;
 }
 .blog-card h3 a { color: var(--text); }
 .blog-card h3 a:hover { color: var(--accent); text-decoration: none; }
+
+/* Botão "ler artigo" dos cards do blogue */
+.blog-cta {
+  order: 3;
+  display: inline-block;
+  margin-top: auto;            /* empurra o conjunto botão+data para o fundo */
+  padding: .45rem 1rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: .9rem;
+  font-weight: 600;
+}
+.blog-cta:hover {
+  text-decoration: none;
+  filter: brightness(1.08);
+  box-shadow: var(--shadow-md);
+}
+
+/* Cartão "Em breve" — primeiro da fila, desliza com os restantes */
+.coming-soon {
+  scroll-snap-align: center;
+  flex: 0 0 min(19rem, 80vw);
+  border: 2px dashed var(--border);
+  box-shadow: none;
+  opacity: .75;
+  justify-content: center;
+}
+.coming-soon:hover { transform: none; }
+.coming-soon h3 { color: var(--muted); }
+
 .slider-btn {
   align-self: center;
   flex: 0 0 auto;
@@ -306,11 +351,11 @@ footer {
 
     <!-- Serviços -->
     <section id="services">
-      <h2 data-i18n="servicesTitle">Serviços & Formação</h2>
+      <h2 data-i18n="servicesTitle">Serviços &amp; Formação</h2>
       <p class="muted" data-i18n="servicesIntro" style="margin-bottom:1.5rem;">Todas as áreas abaixo funcionam como aulas e formação — à distância ou presencialmente — e como planos e soluções para particulares ou organizações.</p>
       <div class="grid">
         <article class="card">
-          <h3 data-i18n="svc1Title">Hacking Ético & Pentesting</h3>
+          <h3 data-i18n="svc1Title">Hacking Ético &amp; Pentesting</h3>
           <p data-i18n="svc1Body">Aprenda pentesting com autorização e rigor — ou contrate uma auditoria — para encontrar falhas antes de as encontrarem por si, com relatórios em linguagem clara.</p>
           <span class="tag" data-i18n="svc1Tag">Aulas à distância ou presenciais · Particulares e organizações</span>
         </article>
@@ -330,12 +375,12 @@ footer {
           <span class="tag" data-i18n="svc4Tag">Planos personalizados · Particulares e organizações</span>
         </article>
         <article class="card">
-          <h3 data-i18n="svc5Title">Hardening & Redes</h3>
+          <h3 data-i18n="svc5Title">Hardening &amp; Redes</h3>
           <p data-i18n="svc5Body">Reforço de sistemas Linux e Android e boas práticas de rede — soluções concretas que cada pessoa ou organização consegue aplicar e manter sozinha.</p>
           <span class="tag" data-i18n="svc5Tag">Soluções à medida · Particulares e organizações</span>
         </article>
         <article class="card">
-          <h3 data-i18n="svc6Title">Privacidade, Direitos Digitais & FLOSS</h3>
+          <h3 data-i18n="svc6Title">Privacidade, Direitos Digitais &amp; FLOSS</h3>
           <p data-i18n="svc6Body">Formação, sensibilização e trabalho de watchdog em defesa da privacidade e dos direitos digitais — com o Software Livre/Open Source (FLOSS) como fundação para a transparência e a segurança orientada pela comunidade.</p>
           <span class="tag" data-i18n="svc6Tag">Formação e sensibilização · Particulares e organizações</span>
         </article>
@@ -453,10 +498,13 @@ const PERFIL = {
   dark: "perfil-dark.webp"
 };
 
-/* ---- Blogue -------------------------------------------------------------- */
+/* ---- Blogue --------------------------------------------------------------
+   Edite só este array para gerir os artigos: cada entrada cria um card
+   completo (título, data, excerto e botão) automaticamente.
+   "cta" é opcional — se omitido, usa a etiqueta padrão do idioma.          */
 const POSTS = [
-  { key: "post1", date: "2026-11-02", url: "/posts/post-one/" },
-  { key: "post2", date: "2026-10-14", url: "/posts/post-two/" },
+  { key: "post1", date: "2026-11-02", url: "/posts/post-one/",   cta: "Ler artigo →" },
+  { key: "post2", date: "2026-10-14", url: "/posts/post-two/",   cta: "Ler artigo →" },
   { key: "post3", date: "2026-09-30", url: "/posts/post-three/" }
 ];
 
@@ -471,6 +519,8 @@ const I18N = {
     themeLabel: "Alternar modo escuro",
     menuLabel: "Abrir menu",
     prevLabel: "Artigo anterior", nextLabel: "Artigo seguinte",
+    blogCta: "Ler artigo →",
+    comingSoon: "Em breve — novos artigos a caminho",
     heroTitle: "Segurança e privacidade, ensinadas e aplicadas na prática.",
     heroSub: "Freelancer independente em cibersegurança, hacking ético, OSINT avançado, forense digital e segurança operacional. Ensino à distância ou presencialmente e construo planos e soluções práticas que protegem as pessoas e os seus dados — particulares ou organizações.",
     servicesTitle: "Serviços & Formação",
@@ -541,6 +591,8 @@ const I18N = {
     themeLabel: "Toggle dark mode",
     menuLabel: "Open menu",
     prevLabel: "Previous post", nextLabel: "Next post",
+    blogCta: "Read post →",
+    comingSoon: "Coming soon — new posts on the way",
     heroTitle: "Security and privacy, taught and applied hands-on.",
     heroSub: "Independent freelancer in cybersecurity, ethical hacking, advanced OSINT, digital forensics and operational security. I teach remotely or in person, and build practical plans and solutions that protect people and their data — individuals and organisations alike.",
     servicesTitle: "Services & Training",
@@ -607,19 +659,66 @@ const I18N = {
 const $ = (sel) => document.querySelector(sel);
 let currentLang = "pt-PT";
 
-/* ---- Blogue: renderização do slider ------------------------------------- */
+/* ---- Blogue: renderização do slider (DOM seguro, sem innerHTML) ----------
+   Cada card recebe um botão gerado automaticamente a partir do "url"
+   do post — para alterar um link no futuro, basta editar POSTS.
+   O primeiro card é sempre o "Em breve"; ao carregar, a vista salta
+   para o primeiro artigo, deixando-o apenas meio visível à esquerda.       */
 function renderBlog(lang) {
   const dict = I18N[lang] || I18N["en-US"];
   const track = $("#blogTrack");
   track.innerHTML = "";
+
+  /* Cartão "Em breve" — primeiro da fila, desliza com os restantes */
+  const soon = document.createElement("article");
+  soon.className = "card blog-card coming-soon";
+  const soonTitle = document.createElement("h3");
+  soonTitle.textContent = dict.comingSoon;
+  soon.appendChild(soonTitle);
+  track.appendChild(soon);
+
   for (const p of POSTS) {
     const card = document.createElement("article");
     card.className = "card blog-card";
-    card.innerHTML =
-      '<time datetime="' + p.date + '">' + p.date + '</time>' +
-      '<h3><a href="' + p.url + '">' + dict[p.key + "Title"] + '</a></h3>' +
-      '<p>' + dict[p.key + "Excerpt"] + '</p>';
+
+    const h3 = document.createElement("h3");
+    const a = document.createElement("a");
+    a.href = p.url;
+    a.textContent = dict[p.key + "Title"];
+    h3.appendChild(a);
+
+    const excerpt = document.createElement("p");
+    excerpt.textContent = dict[p.key + "Excerpt"];
+
+    /* Botão "ler artigo" — liga sempre ao url deste post */
+    const btn = document.createElement("a");
+    btn.className = "blog-cta";
+    btn.href = p.url;
+    btn.textContent = p.cta || dict.blogCta;
+
+    const time = document.createElement("time");
+    time.setAttribute("datetime", p.date);
+    time.textContent = p.date;
+
+    card.append(h3, excerpt, btn, time);
     track.appendChild(card);
+  }
+
+  /* Começar com o primeiro artigo visível:
+     o "Em breve" fica escondido meio cartão à esquerda. */
+  const cards = track.querySelectorAll(".blog-card");
+  const first = cards[1]; // índice 0 é o "Em breve"
+  if (first) {
+    requestAnimationFrame(() => {
+      const left =
+        first.getBoundingClientRect().left -
+        track.getBoundingClientRect().left +
+        track.scrollLeft;
+      track.scrollTo({
+        left: left - (track.clientWidth - first.offsetWidth) / 2,
+        behavior: "auto"
+      });
+    });
   }
 }
 
