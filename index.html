@@ -165,13 +165,443 @@
         </article>-->
       </div>
     </section>
+
+<!-- Artigo integrado: Extreme Privacy (Michael Bazzell) — as 20 ações essenciais -->
+<section id="post-extreme" class="post-view" hidden>
+  <div class="lang-pt" lang="pt-PT">
+    <article class="post-article">
+      <p class="post-kicker">Blogue · Privacidade</p>
+      <h1>Extreme Privacy: as 20 ações essenciais de Michael Bazzell</h1>
+      <p class="post-sub">Extreme Privacy: What It Takes to Disappear nasce dos anos de Bazzell como investigador de inteligência do FBI e, depois, como consultor de privacidade que ajudou celebridades, executivos e vítimas de abuso a desaparecer. O livro é deliberadamente proativo — é o manual que entregaria a um cliente novo numa situação extrema — e insiste que a privacidade é «um sprint, não uma maratona»: concentra-se o trabalho intenso no início e mantém-se depois. Nota: o livro é fortemente focado nos EUA (registos públicos, data brokers, regras do DMV), mas muitos princípios aplicam-se globalmente.</p>
+      <p class="post-meta"><time datetime="2026-11-27">27/11/2026</time> · ethics.click</p>
+
+      <p>Aqui estão as 20 ações mais importantes, organizadas como uma sequência lógica.</p>
+
+      <h2>Fase 1 — Fundação e mentalidade</h2>
+      <ol>
+        <li><strong>Construa primeiro um modelo de ameaças.</strong> Antes de tocar numa única definição, escreva de quem se está a esconder (um ex-parceiro? perseguidores? empregadores? vigilância em massa?) e que recursos têm. Tudo o que vem depois — até onde ir, o que sacrificar — decorre daqui. Saltar este passo leva a esforço desperdiçado ou pontos cegos perigosos.</li>
+        <li><strong>Ataque os seus dados por ordem cronológica, como um projeto.</strong> O livro dá explicitamente uma cronologia de tarefas. A lógica: os identificadores secundários (números de telefone, emails, moradas) são as «chaves» que os investigadores usam para chegar à sua identidade primária. Elimine primeiro os pontos de ligação, depois limpe a identidade em si. Trabalhe num documento dedicado com datas de conclusão.</li>
+        <li><strong>Faça o inventário de si próprio como faria um investigador.</strong> Procure-se da forma como os adversários dos clientes de Bazzell o fariam: sites de pesquisa de pessoas, bases de dados de violações (Have I Been Pwned), nomes de utilizador antigos, fotos em cache, registos de propriedade, processos judiciais. Não se pode remover o que não se sabe que existe. Mantenha uma folha de cálculo com todos os sites que têm os seus dados — será a sua lista de trabalho para os pedidos de remoção.</li>
+        <li><strong>Assuma a competência do adversário.</strong> Bazzell repete que os manuais anteriores deixaram de funcionar quando os adversários se adaptaram. Não confie apenas na «segurança pela obscuridade» — assuma que uma pessoa motivada com competências de OSINT e bases de dados comerciais consegue ligar pontos, e desenhe o sistema para que esses pontos não existam.</li>
+      </ol>
+
+      <h2>Fase 2 — Identidade e documentos</h2>
+      <ol start="5">
+        <li><strong>Bloqueie os ficheiros de crédito antes de mais nada.</strong> Congele o crédito nas três agências (Equifax, Experian, TransUnion) e acrescente ChexSystems, Innovis e NCTUE. Uma única ação que bloqueia um dos vetores mais danosos: alguém abrir contas ou empréstimos em seu nome usando dados públicos.</li>
+        <li><strong>Remova a morada de casa de todos os registos possíveis.</strong> É o coração do livro: sair dos sites de pesquisa de pessoas e dos data brokers (pedidos automáticos e manuais, renovados regularmente), programas de confidencialidade no DMV do estado, registo eleitoral marcado como confidencial onde permitido, processos judiciais selados ou redigidos, e sair das bases de marketing por correio (DMA Choice, OptOutPrescreen).</li>
+        <li><strong>Use um «trust» ou intermediário legal para deter os ativos.</strong> Os registos de propriedade são uma das maiores fugas — os sites dos avaliadores municipais publicam nomes e moradas de proprietários para sempre. O movimento padrão de Bazzell: colocar a casa num land trust ou numa LLC com a morada de um agente, para que o seu nome nunca apareça em registos públicos.</li>
+        <li><strong>Nunca publique a data de nascimento e minimize o uso do nome real em linha.</strong> Datas de nascimento e nomes do meio são o mecanismo universal de «confirmar que é o John Smith certo» nas bases de dados. Nunca distribua a data de nascimento casualmente — cada site que a exige acrescenta uma chave de correspondência ao seu perfil.</li>
+      </ol>
+
+      <h2>Fase 3 — Comunicação e contas</h2>
+      <ol start="9">
+        <li><strong>Crie identidades de email compartimentadas.</strong> Um email por finalidade: um para a banca, um para compras, um para atividades pseudónimas, nenhum partilhado entre contextos. Se um for comprometido ou vendido, não pode ser correlacionado com os outros. Nunca reutilize o email pessoal principal para logins em sites públicos.</li>
+        <li><strong>Substitua o número real por números VoIP em camadas.</strong> O número da operadora está ligado ao seu nome, morada e risco de SIM-swap. Abordagem do livro: número real só para emergências, guardado em privado; números VoIP (de fornecedores que não exigem identificação) para todo o resto — um por compartimento de identidade, trocado se queimado.</li>
+        <li><strong>Escolha fornecedores de email e telefone que não entreguem os seus dados.</strong> Avalie os fornecedores pela jurisdição, políticas de registos e exigência de verificação de identidade. O livro percorre as trocas concretas (email encriptado vs. conveniência, serviço pré-pago vs. contrato).</li>
+        <li><strong>Encripte as comunicações de ponta a ponta por predefinição.</strong> Use Signal (com mensagens temporárias) ou equivalente para mensagens, e reconheça que os metadados (quem, quando, com que frequência) vazam mesmo quando o conteúdo é encriptado. Desconfie das cópias de segurança de mensagens na nuvem.</li>
+        <li><strong>Abandone a tecnologia suportada por publicidade.</strong> Substitua a pesquisa Google por um motor sem registos, use um navegador endurecido com medidas antifingerprinting e navegadores compartimentados, e assuma que o seu endereço IP é registado em todo o lado — o que nos leva à fase seguinte.</li>
+      </ol>
+
+      <h2>Fase 4 — Rede e dispositivos</h2>
+      <ol start="14">
+        <li><strong>Passe todo o tráfego por uma VPN e DNS próprio.</strong> Bazzell trata uma VPN paga e sem registos como base, mas enfatiza a metade frequentemente esquecida: DNS encriptado (DNS-over-HTTPS/TLS) configurado manualmente ao nível do sistema operativo, porque fugas de DNS revelam todos os sites que visita mesmo com VPN. Há um capítulo inteiro dedicado a isto, incluindo no telemóvel.</li>
+        <li><strong>Endureça o sistema operativo e elimine a telemetria.</strong> No computador: reinstalação limpa (ou uma distribuição Linux respeitadora da privacidade), remoção de bloatware e telemetria, encriptação total do disco e firewall. No telemóvel, a recomendação mais forte (evoluindo entre edições para GrapheneOS num Pixel) é Android des-Googlizado com aplicações em sandbox — admitindo que o iPhone continua viável se aplicar as camadas DNS/VPN/VoIP. Escolha a plataforma deliberadamente; não aceite simplesmente a que lhe venderam.</li>
+        <li><strong>Controle os serviços push e as instalações de aplicações sem piedade.</strong> Cada aplicação instalada é uma potencial torneira de dados: histórico de localização, acesso a contactos, identificadores de publicidade. Audite permissões, desative IDs de publicidade, negue localização em segundo plano, instale apenas de fontes confiáveis e apague tudo o que não serve um compartimento do seu modelo de ameaças. As próprias notificações push podem vazar — configure-as com cuidado.</li>
+      </ol>
+
+      <h2>Fase 5 — Mundo físico</h2>
+      <ol start="17">
+        <li><strong>Tire o veículo do ecossistema de rastreio.</strong> Leitores de matrículas registam automaticamente os seus movimentos. Contramedidas: suportes que cobrem ou desgastam a matrícula onde for legal, estacionar fora da rua, métodos de pagamento de portagens que não ligam à sua identidade, evitar aplicações de estacionamento que vendem dados, e compreender os rastos de câmaras de bordo e transponders. É um capítulo característico de «contornos legais».</li>
+        <li><strong>Sanitize entregas, serviços e rotinas diárias.</strong> Encomendas, comida ao domicílio, check-ins no ginásio, cartões de fidelização e dispositivos domésticos inteligentes constroem perfis de movimentos e hábitos. Use armários de recolha, nomes genéricos onde possível, dinheiro nas compras de rotina, e desative ou recuse a recolha de dados dos dispositivos inteligentes (assistentes de voz, contadores inteligentes onde existe opt-out).</li>
+        <li><strong>Mova o dinheiro de forma anónima onde for legal.</strong> Separe as finanças: uma conta privada que nenhum comerciante conhece, dinheiro para os gastos diários, métodos de pagamento respeitadores da privacidade, e nunca deixar que a morada, o email ou o telefone toquem nas bases de dados de comerciantes. Mantenha também «fundos operacionais» mínimos nas contas rastreáveis.</li>
+      </ol>
+
+      <h2>Fase 6 — Viver isto</h2>
+      <ol start="20">
+        <li><strong>Pratique manutenção contínua e conheça o seu caminho de reposição.</strong> A privacidade decai: os data brokers repovoam-se, os registos ressuscitam, as aplicações atualizam-se. Bazzell inclui um calendário de manutenção (novas pesquisas periódicas, renovação de opt-outs, auditorias de dispositivos) e — em exclusivo — um capítulo de «Reset e Reversão» que explica como desfazer ou reconstruir a configuração se algo falhar, para que um erro não se transforme em cascata. Documenta também abertamente os próprios erros do passado: a disciplina é a iteração, não a perfeição.</li>
+      </ol>
+
+      <h2>A filosofia por detrás dos 20 passos</h2>
+      <p>Duas ideias unem o livro. Primeiro, <strong>o modelo de ameaças decide tudo</strong> — uma vítima de perseguição precisa dos passos 5 a 8 executados hoje; uma pessoa média consciente da privacidade pode parar na Fase 3. Segundo, <strong>a correlação é o inimigo</strong>: nenhuma peça isolada de dados o prejudica, mas são as ligações entre data de nascimento + morada + telefone + email que o tornam encontrável. Praticamente todas as táticas do livro existem para quebrar uma dessas ligações.</p>
+      <p>Vale a pena saber: a edição atual (material da 5.ª geração, 500+ páginas) inclui modelos de documentos legais completos e uma ordem cronológica de tarefas, distribuída digitalmente via IntelTechniques. As críticas apontam, com razão, que o detalhe profundo é centrado nos EUA — se estiver fora, espere adaptar cerca de um terço das táticas. E há um fio ético que vários leitores assinalam: várias técnicas protegem da responsabilização tão facilmente quanto do dano — é um trabalho poderoso, e cabe-lhe a si usá-lo de forma responsável.</p>
+
+      <a class="voltar" href="#blog">← Voltar ao blogue</a>
+    </article>
+  </div>
+
+  <div class="lang-en" lang="en">
+    <article class="post-article">
+      <p class="post-kicker">Blog · Privacy</p>
+      <h1>Extreme Privacy: Michael Bazzell's 20 must-do actions</h1>
+      <p class="post-sub">Extreme Privacy: What It Takes to Disappear is built on Bazzell's years as an FBI intelligence investigator and later as a privacy consultant who helped celebrities, executives, and abuse victims vanish. The book is deliberately proactive — it's the playbook he'd hand a new client in an extreme situation — and stresses that privacy is "a sprint, not a marathon": you front-load intense work, then maintain. Note the book is heavily US-focused (public records, data brokers, DMV rules), though many principles apply globally.</p>
+      <p class="post-meta"><time datetime="2026-11-27">11/27/2026</time> · ethics.click</p>
+
+      <p>Here are the 20 most important must-do actions, organized as a logical sequence.</p>
+
+      <h2>Phase 1 — Foundation &amp; Mindset</h2>
+      <ol>
+        <li><strong>Build a threat model first.</strong> Before touching a single setting, write down who you're hiding from (an ex-partner? stalkers? employers? mass surveillance?) and what resources they have. Everything downstream — how far you go, what you sacrifice — flows from this. Skipping it leads to wasted effort or dangerous blind spots.</li>
+        <li><strong>Attack your data in chronological order, like a project.</strong> The book explicitly gives a timeline of tasks. The logic: secondary identifiers (phone numbers, emails, addresses) are the "keys" investigators use to find your primary identity. Kill the linkage points first, then scrub the identity itself. Work in a dedicated timeline document with completion dates.</li>
+        <li><strong>Inventory yourself like an investigator would.</strong> Search for yourself the way Bazzell's clients' adversaries would: people-search sites, breach databases (Have I Been Pwned), old usernames, cached photos, property records, court dockets. You can't remove what you don't know exists. Keep a spreadsheet of every site holding your data — it becomes your opt-out worklist.</li>
+        <li><strong>Assume competence of your adversary.</strong> Bazzell repeats that past workbooks only worked until adversaries adapted. Don't rely on "security through obscurity" alone — assume a motivated person with OSINT skills and commercial databases can connect dots, and design so the dots don't exist.</li>
+      </ol>
+
+      <h2>Phase 2 — Identity &amp; Documents</h2>
+      <ol start="5">
+        <li><strong>Lock down your credit files before anything else.</strong> Freeze credit with all three bureaus (Equifax, Experian, TransUnion) plus ChexSystems, Innovis, and NCTUE. This single action blocks one of the most damaging attack vectors: someone opening accounts or loans in your name using public data.</li>
+        <li><strong>Remove your home address from every possible record.</strong> This is the heart of the book: dropping your address from people-search sites and data brokers (automated + manual opt-outs, refreshed regularly), confidentiality programs with your state DMV, marking voter registration confidential where allowed, sealing or redacting court documents, and removing your name from mailed marketing databases (DMA Choice, OptOutPrescreen).</li>
+        <li><strong>Use a "trust" or legal intermediary to hold assets.</strong> Property records are one of the biggest leaks — county assessor websites publish owner names and addresses forever. Bazzell's standard move is putting the home in a land trust or LLC with an agent's address, so your name never appears in public records.</li>
+        <li><strong>Never publish your date of birth, and minimize real-name usage online.</strong> Birthdates and middle names are the universal "confirm you're the right John Smith" mechanism in databases. Never hand out your DOB casually — every site requiring it adds a matching key to your profile.</li>
+      </ol>
+
+      <h2>Phase 3 — Communication &amp; Accounts</h2>
+      <ol start="9">
+        <li><strong>Create compartmentalized email identities.</strong> One email per purpose: one for banking, one for shopping, one for pseudonymous activities, none shared across contexts. If one gets breached or sold, it can't be correlated with the others. Never reuse a primary personal email for logins on public-facing sites.</li>
+        <li><strong>Replace your real phone number with layered VoIP numbers.</strong> Your carrier's number is tied to your name, address, and SIM-swap risk. Bazzell's approach: real number for emergency use only, stored privately; VoIP numbers (from providers that don't demand ID) for everything else — one per identity compartment, rotated if burned.</li>
+        <li><strong>Choose email and phone providers that won't hand over your data.</strong> Evaluate providers on jurisdiction, logging policies, and whether they require identity verification. The book walks through specific trade-offs (encrypted email vs. convenience, prepaid vs. contract service).</li>
+        <li><strong>Encrypt communications end-to-end by default.</strong> Use Signal (with disappearing messages) or similar for messaging, and recognize that metadata (who, when, how often) leaks even when content is encrypted. Distrust cloud-stored message backups.</li>
+        <li><strong>Ditch ad-supported tech.</strong> Replace Google search with a non-logging engine, use a dedicated hardened browser with anti-fingerprinting settings and container/compartment browsers, and assume your IP address is logged everywhere — which leads to the next phase.</li>
+      </ol>
+
+      <h2>Phase 4 — Network &amp; Devices</h2>
+      <ol start="14">
+        <li><strong>Route all traffic through a VPN and custom DNS.</strong> Bazzell treats a paid, non-logging VPN as baseline, but emphasizes the often-missed half: encrypted DNS (DNS-over-HTTPS/TLS) set manually at the OS level, because DNS leaks reveal every site you visit regardless of VPN. He dedicates a full chapter to configuring this correctly, including on mobile.</li>
+        <li><strong>Harden the operating system and strip telemetry.</strong> On desktop: a clean reinstall (or a privacy-respecting Linux distro), removing bloatware and telemetry, full-disk encryption, and a firewall. On mobile, his strongest recommendation (evolving across editions toward GrapheneOS on a Pixel) is de-Googled Android with sandboxed apps — while acknowledging iPhones remain viable if you apply the DNS/VPN/VoIP layers. Choose the platform deliberately; don't just accept the one you were sold.</li>
+        <li><strong>Control push services and app installations ruthlessly.</strong> Every installed app is a potential data tap: location history, contact access, ad identifiers. Audit permissions, disable advertising IDs, deny background location, install from trusted sources only, and delete anything that doesn't serve a compartment in your threat model. Push notifications themselves can leak — configure them carefully.</li>
+      </ol>
+
+      <h2>Phase 5 — Physical World</h2>
+      <ol start="17">
+        <li><strong>Take your vehicle out of the tracking ecosystem.</strong> License-plate readers log your movements automatically. Countermeasures include covered/faded plate holders where legal, parking off-street, toll-payment methods that don't link to your identity, avoiding parking apps that sell data, and understanding dashcam/transponder trails. This is a signature "legal workarounds" chapter.</li>
+        <li><strong>Sanitize deliveries, utilities, and daily routines.</strong> Package deliveries, food delivery, gym check-ins, loyalty cards, and smart-home devices all build movement and habit profiles. Use pickup lockers, generic names where possible, cash for routine purchases, and disable or refuse smart-device data collection (voice assistants, smart meters where opt-out exists).</li>
+        <li><strong>Move money anonymously where lawful.</strong> Segregate finances: a private account known to no merchants, cash for daily spending, privacy-respecting payment methods, and never letting your home address, email, or phone touch merchant databases. Keep "operational funds" minimal in traceable accounts.</li>
+      </ol>
+
+      <h2>Phase 6 — Living It</h2>
+      <ol start="20">
+        <li><strong>Practice ongoing maintenance, and know your reset path.</strong> Privacy decays: data brokers repopulate, records resurface, apps update. Bazzell builds in a maintenance schedule (periodic re-searches, opt-out refreshes, device audits) and — uniquely — a "Reset and Reversal" chapter describing how to unwind or rebuild your setup if something breaks, so one mistake doesn't cascade. He also openly documents his own past mistakes: the discipline is iteration, not perfection.</li>
+      </ol>
+
+      <h2>The core philosophy underneath all 20</h2>
+      <p>Two ideas tie the book together. First, <strong>the threat model decides everything</strong> — a stalking victim needs steps 5–8 executed today; an average privacy-conscious person may stop at Phase 3. Second, <strong>correlation is the enemy</strong>: no single piece of data harms you, but the linkages between DOB + address + phone + email are what make you findable. Nearly every tactic in the book exists to break one of those links.</p>
+      <p>Worth knowing: the current edition (5th-generation material, 500+ pages) includes full legal document templates and a chronological task order, distributed digitally via IntelTechniques. Critics fairly note the deep detail is US-centric — if you're outside the US, expect to adapt roughly a third of the tactics. And there's an ethical thread some readers flag: several techniques can shield you from accountability as easily as from harm — the book is powerful tradecraft, and it's yours to use responsibly.</p>
+
+      <a class="voltar" href="#blog">← Back to the blog</a>
+    </article>
+  </div>
+</section>
+
+    <!-- Artigo integrado: OPSEC para todos (aberto a partir do slider do blogue) -->
+<section id="post-opsec" class="post-view" hidden>
+  <div class="lang-pt" lang="pt-PT">
+    <article class="post-article">
+      <p class="post-kicker">Blogue · Segurança Operacional</p>
+      <h1>Segurança operacional para todos</h1>
+      <p class="post-sub">Como aplicar princípios de OPSEC no dia-a-dia — sem paranoias, sem complicações, apenas hábitos que fazem a diferença.</p>
+      <p class="post-meta"><time datetime="2026-11-02">02/11/2026</time> · ethics.click</p>
+
+      <p>Quando ouve a expressão <strong>"segurança operacional"</strong> (OPSEC), provavelmente imagina agentes secretos, militares em zonas de conflito ou empresas de cibersegurança com salas cheias de ecrãs. A verdade é que os princípios de OPSEC nasceram nesse mundo, mas adaptam-se surpreendentemente bem à vida comum. E a boa notícia: aplicá-los não exige virar paranoico nem gastar dinheiro em ferramentas exóticas. Exige apenas alguns hábitos simples e consistentes.</p>
+
+      <h2>O que é OPSEC, afinal?</h2>
+      <p>OPSEC é, no fundo, o processo de responder a três perguntas sobre a sua própria vida digital e física:</p>
+      <ol>
+        <li><strong>Que informação valiosa tenho?</strong> (dados, rotinas, localizações, palavras-passe, documentos)</li>
+        <li><strong>Quem pode querer essa informação e como a obteria?</strong> (criminosos, curiosos, oportunistas)</li>
+        <li><strong>O que posso fazer para reduzir a exposição?</strong> (hábitos e barreiras práticas)</li>
+      </ol>
+      <p>Repare que a pergunta não é "como fico 100% seguro?" — isso é impossível. É "como me torno um alvo suficientemente difícil para que o atacante desista e passe para a pessoa ao lado?". A segurança é um exercício de redução de risco, não de perfeição.</p>
+
+      <h2>Hábito 1: Partilhe menos, por defeito</h2>
+      <p>A maior parte da exposição é voluntária. Um vídeo nos stories mostra a fachada do seu prédio. Uma foto de férias anuncia que a casa está vazia. O crachá ao pescoço durante o trajeto mostra onde trabalha.</p>
+      <p>Não se trata de desaparecer da internet — trata-se de criar um pequeno atraso entre o momento e a publicação. Publique as fotos das férias quando regressar, e não durante a ausência. Esconda crachás, documentos e ecrãs com dados de clientes. Pergunte a si mesmo, antes de partilhar: <em class="q">"esta informação, combinada com o que já partilhei, revela algo que eu não revelaria diretamente?"</em> Os atacantes quase nunca precisam de um único dado valioso — juntam pequenos fragmentos.</p>
+
+      <h2>Hábito 2: Palavras-passe únicas e um gestor de palavras-passe</h2>
+      <p>A regra mais importante da higiene digital continua a ser: <strong>não reutilize palavras-passe</strong>. Quando um serviço é comprometido (e isso acontece regularmente, veja o histórico de violações de dados dos últimos anos), os criminosos testam as credenciais roubadas em serviços de banca, email e redes sociais. Uma palavra-passe repetida transforma uma violação pequena numa violação grande.</p>
+      <p>Um gestor de palavras-passe resolve isto por si: gera senhas longas e aleatórias, memoriza-as por si, e deixa-o usar uma senha-mestra única. Complemente com <strong>autenticação de dois fatores</strong> (2FA) em tudo o que importe — email primeiro, que é a porta de entrada para recuperar todas as outras contas. Se possível, use uma aplicação de códigos ou chaves de segurança em vez de SMS.</p>
+
+      <h2>Hábito 3: Atualizações são defesa, não aborrecimento</h2>
+      <p>Grande parte dos ataques bem-sucedidos explora falhas já conhecidas e já corrigidas. Adiar atualizações é deixar aberta uma porta cuja fechadura os fabricantes já substituíram. Ative as atualizações automáticas no telemóvel, computador e router. Sim, o router também — é o aparelho que mais tempo corre sem ninguém lhe tocar.</p>
+
+      <h2>Hábito 4: Redes públicas com cuidado</h2>
+      <p>O Wi-Fi gratuito do café ou do aeroporto não é necessariamente uma armadilha, mas é um ambiente que não controla. A boa notícia: a navegação com HTTPS moderno protege grande parte do tráfego. Ainda assim, se vai tratar de assuntos sensíveis (banca, trabalho), uma VPN fiável acrescenta uma camada de proteção. Evite, sobretudo, instalar aplicações ou aceitar certificados estranhos que um hotspot lhe peça.</p>
+
+      <h2>Hábito 5: Atenção à engenharia social</h2>
+      <p>Estatisticamente, o caminho mais fácil para atacar alguém não é hackear — é pedir. Mensagens urgentes que imitam a sua empresa, o seu banco, os CTT ou até um colega. O padrão defensivo é simples: <strong>desconfie da urgência</strong>. Não clique na ligação da mensagem; vá diretamente à aplicação ou escreva o endereço oficial. Verifique pedidos de pagamento ou de dados por um segundo canal. Trinta segundos de verificação evitam a maioria destas fraudes.</p>
+
+      <h2>Hábito 6: Menos superfície de ataque, literalmente</h2>
+      <p>Olhe em volta. Quantos separadores com documentos confidenciais estão abertos? Que documentos estão no ecrã quando trabalha num espaço público? Tem o bloqueio automático do ecrã ativo (30 segundos a 1 minuto)? Fechou a sessão no computador de outra pessoa? São detalhes pequenos, mas é exatamente aí que a "operação" diária se decide.</p>
+
+      <h2>Hábito 7: Prepare a resposta, não só a prevenção</h2>
+      <p>OPSEC maduro assume que algo vai falhar. Por isso: saiba como alterar rapidamente as palavras-passe principais, tenha cópias de segurança dos ficheiros importantes (num formato offline ou com histórico, não apenas sincronizadas) e mantenha uma forma alternativa de acesso às contas críticas se o telemóvel se perder. Um plano de resposta de dez minutos vale mais do que um muro de cem metros.</p>
+
+      <h2>O equilíbrio que procuramos</h2>
+      <p>Há uma linha entre vigilância saudável e paralisia paranoide, e ela passa pela proporcionalidade. Um estudante, um freelancer e um gestor de uma empresa multinacional têm perfis de risco diferentes — e não faz sentido que todos vivam com o mesmo nível de restrição. O objetivo não é esconder-se do mundo; é garantir que os hábitos diários não ofereçam a quem quiser causar dano um caminho fácil. Pequenas fricções, aplicadas consistentemente, fazem todo o trabalho.</p>
+      <p>Comece pequeno: escolha dois hábitos deste artigo, aplique-os esta semana e siga a partir daí. A segurança que realmente protege não é a que vive num manual — é a que já é parte de si.</p>
+
+      <div class="post-checklist">
+        <p><strong>Lista de verificação rápida:</strong></p>
+        <ul>
+          <li>Palavras-passe únicas + gestor de palavras-passe</li>
+          <li>2FA no email e nas contas críticas</li>
+          <li>Atualizações automáticas ativadas</li>
+          <li>Desconfiança de mensagens urgentes — verificação por canal alternativo</li>
+          <li>Publicação de fotos de férias após o regresso</li>
+          <li>Bloqueio automático do ecrã</li>
+          <li>Cópias de segurança testadas</li>
+        </ul>
+      </div>
+
+      <a class="voltar" href="#blog">← Voltar ao blogue</a>
+    </article>
+  </div>
+
+  <div class="lang-en" lang="en">
+    <article class="post-article">
+      <p class="post-kicker">Blog · Operational Security</p>
+      <h1>Operational Security for Everyone</h1>
+      <p class="post-sub">How to apply OPSEC principles in daily life — no paranoia, no complexity, just habits that make a difference.</p>
+      <p class="post-meta"><time datetime="2026-11-02">11/02/2026</time> · ethics.click</p>
+
+      <p>When you hear <strong>"operational security"</strong> (OPSEC), you probably picture spies, military personnel in conflict zones, or cybersecurity firms with rooms full of screens. The truth is that OPSEC principles were born in that world, but they translate surprisingly well into everyday life. And the good news: applying them doesn't require turning paranoid or spending money on exotic tools. It requires just a few simple, consistent habits.</p>
+
+      <h2>What is OPSEC, really?</h2>
+      <p>At its core, OPSEC is the process of answering three questions about your own digital and physical life:</p>
+      <ol>
+        <li><strong>What valuable information do I have?</strong> (data, routines, locations, passwords, documents)</li>
+        <li><strong>Who might want it, and how would they get it?</strong> (criminals, snoops, opportunists)</li>
+        <li><strong>What can I do to reduce exposure?</strong> (practical habits and barriers)</li>
+      </ol>
+      <p>Notice the question isn't "how do I become 100% secure?" — that's impossible. It's "how do I become a target hard enough that an attacker gives up and moves on to the person next door?" Security is an exercise in risk reduction, not perfection.</p>
+
+      <h2>Habit 1: Share less, by default</h2>
+      <p>Most exposure is voluntary. A story video shows the front of your building. A vacation photo announces your house is empty. The badge hanging from your neck during your commute shows where you work.</p>
+      <p>This isn't about disappearing from the internet — it's about building a small delay between the moment and the post. Publish vacation photos when you're back, not while you're away. Hide badges, documents, and screens with client data. Ask yourself before sharing: <em class="q">"does this information, combined with what I've already shared, reveal something I wouldn't reveal directly?"</em> Attackers almost never need a single valuable piece of data — they collect small fragments.</p>
+
+      <h2>Habit 2: Unique passwords and a password manager</h2>
+      <p>The most important rule of digital hygiene remains: <strong>don't reuse passwords</strong>. When a service gets breached (and this happens regularly — look at the data-breach history of recent years), criminals test the stolen credentials against banking, email, and social media services. One repeated password turns a small breach into a big one.</p>
+      <p>A password manager solves this for you: it generates long, random passwords, remembers them for you, and lets you use a single master passphrase. Add <strong>two-factor authentication</strong> (2FA) on everything that matters — email first, since it's the gateway for recovering every other account. Where possible, use an authenticator app or hardware security keys instead of SMS.</p>
+
+      <h2>Habit 3: Updates are defense, not annoyance</h2>
+      <p>A large share of successful attacks exploits flaws that are already known and already patched. Postponing updates means leaving open a door whose lock the manufacturer has already replaced. Turn on automatic updates on your phone, computer, and router. Yes, the router too — it's the device that runs the longest without anyone touching it.</p>
+
+      <h2>Habit 4: Caution on public networks</h2>
+      <p>Free Wi-Fi at the café or airport isn't necessarily a trap, but it is an environment you don't control. The good news: modern HTTPS browsing protects most traffic. Still, if you're handling sensitive matters (banking, work), a trustworthy VPN adds a layer of protection. Above all, avoid installing apps or accepting odd certificates that a hotspot asks for.</p>
+
+      <h2>Habit 5: Watch out for social engineering</h2>
+      <p>Statistically, the easiest way to attack someone isn't hacking — it's asking. Urgent messages impersonating your company, your bank, the postal service, or even a colleague. The defensive pattern is simple: <strong>distrust urgency</strong>. Don't click the link in the message; go straight to the app or type the official address yourself. Verify payment or data requests through a second channel. Thirty seconds of verification prevents most of these scams.</p>
+
+      <h2>Habit 6: Reduce the attack surface, literally</h2>
+      <p>Look around. How many tabs with confidential documents are open? Which documents are on your screen when working in a public space? Is automatic screen lock enabled (30 seconds to 1 minute)? Did you log out of someone else's computer? These are small details, but it's exactly there that daily "operations" are won or lost.</p>
+
+      <h2>Habit 7: Prepare the response, not just the prevention</h2>
+      <p>Mature OPSEC assumes something will eventually fail. So: know how to quickly change your main passwords, keep backups of important files (offline or with version history, not merely synced), and maintain an alternative way to access critical accounts if your phone is lost. A ten-minute response plan beats a hundred-meter wall.</p>
+
+      <h2>The balance we're aiming for</h2>
+      <p>There's a line between healthy vigilance and paranoid paralysis, and it runs through proportionality. A student, a freelancer, and the manager of a multinational have different risk profiles — it makes no sense for everyone to live with the same level of restriction. The goal isn't to hide from the world; it's to ensure your daily habits don't hand anyone who wants to cause harm an easy path. Small frictions, applied consistently, do all the work.</p>
+      <p>Start small: pick two habits from this article, apply them this week, and build from there. The security that truly protects isn't the one that lives in a manual — it's the one that has already become part of you.</p>
+
+      <div class="post-checklist">
+        <p><strong>Quick checklist:</strong></p>
+        <ul>
+          <li>Unique passwords + password manager</li>
+          <li>2FA on email and critical accounts</li>
+          <li>Automatic updates enabled</li>
+          <li>Distrust urgent messages — verify through an alternate channel</li>
+          <li>Post vacation photos after you're back</li>
+          <li>Automatic screen lock</li>
+          <li>Tested backups</li>
+        </ul>
+      </div>
+
+      <a class="voltar" href="#blog">← Back to the blog</a>
+    </article>
+  </div>
+</section>
+
+<!-- Artigo integrado: Notas de hardening para Linux -->
+<section id="post-hardening" class="post-view" hidden>
+  <div class="lang-pt" lang="pt-PT">
+    <article class="post-article">
+      <p class="post-kicker">Blogue · Hardening Linux</p>
+      <h1>Notas de hardening para Linux</h1>
+      <p class="post-sub">Reforço mínimo de um sistema Linux: contas, rede e atualizações. As três coisas que mais importam, por esta ordem.</p>
+      <p class="post-meta"><time datetime="2026-10-14">14/10/2026</time> · ethics.click</p>
+
+      <p>Há uma tentação constante quando se fala de segurança em Linux: falar de SELinux, AppArmor, grsecurity, sandboxes, módulos do kernel… Tudo temas legítimos, mas todos depois do essencial. Se a base estiver mal feita, o resto é decoração.</p>
+      <p>Este texto é uma nota prática: o reforço mínimo que aplicaria a qualquer servidor ou máquina pessoal, sem ficheiros de configuração exóticos nem ferramentas de nicho. Três áreas, nesta ordem, porque a prioridade também importa.</p>
+
+      <h2>1. Contas — quem pode entrar</h2>
+      <p>A maioria das intrusões começa por aqui: uma conta com palavra-passe fraca, uma chave SSH partilhada, um sudo demasiado generoso.</p>
+      <ul>
+        <li><strong>Desativar o login direto de root.</strong> Em <code>/etc/ssh/sshd_config</code>: <code>PermitRootLogin no</code>. Trabalhar com uma conta de utilizador comum e escalar com sudo.</li>
+        <li><strong>Autenticação por chave SSH, não por palavra-passe.</strong> Gerar chaves Ed25519, instalar a pública no servidor e desativar <code>PasswordAuthentication yes</code> → <code>no</code>. Palavras-passe adivinháveis à distância de um bot.</li>
+        <li><strong>Chaves à prova de roubo.</strong> Usar passphrase na chave privada e, sempre que possível, uma chave de hardware (YubiKey, Nitrokey) como suporte. Uma chave roubada sem passphrase vale tanto como uma palavra-passe escrita num post-it.</li>
+        <li><strong>Auditar quem existe.</strong> <code>less /etc/passwd</code> de vez em quando: remover contas órfãs de ex-colegas, serviços antigos e contas de teste. Cada conta é uma porta.</li>
+        <li><strong>sudo com princípio do menor privilégio.</strong> Não dar <code>ALL=(ALL:ALL)</code> a toda a gente. Grupos como <code>sudo</code> ou <code>wheel</code> devem ter poucos membros, e vale a pena rever <code>sudo -l</code> de cada um.</li>
+        <li><strong>Bloquear tentativas repetidas.</strong> fail2ban é quase obrigatório em máquinas expostas à internet: bane IPs com demasiadas falhas de autenticação, automaticamente.</li>
+      </ul>
+      <p>O objetivo desta camada é simples: reduzir a superfície de autenticação a um conjunto pequeno, conhecido e auditável de pessoas e chaves.</p>
+
+      <h2>2. Rede — o que está exposto</h2>
+      <p>O segundo passo não é proteger o que está dentro, mas decidir o que responde lá fora.</p>
+      <ul>
+        <li><strong>Inventariar portas abertas.</strong> A partir de outra máquina: <code>nmap -sV endereço-do-servidor</code> ou, localmente, <code>ss -tulpn</code>. Tudo o que não é necessário deve ser fechado ou desinstalado — um serviço desligado é o único firewall perfeito.</li>
+        <li><strong>Firewall negativo por omissão.</strong> ufw (simples) ou nftables/firewalld (mais completo). Regra base: negar tudo, permitir explicitamente o que é preciso (SSH, HTTPS, o que servir). Num servidor privado, restringir ainda mais: o SSH só a partir de faixas conhecidas, por exemplo.</li>
+        <li><strong>SSH endurecido.</strong> Mudar a porta é cosmético (não é segurança, é menos ruído nos logs); o que muda o jogo é restringir utilizadores (<code>AllowUsers</code>), desativar autenticação de palavra-passe e desativar forwarding desnecessário.</li>
+        <li><strong>Cifrar tudo o que circula.</strong> Tudo atrás de HTTPS (HTTPS em todos os endpoints públicos), tráfego entre serviços internos também, se atravessar redes hostis.</li>
+        <li><strong>Considerar rede em camadas.</strong> Em ambientes maiores: VLANs, DMZ para serviços públicos, bases de dados que só respondem dentro da rede interna. Em casa ou num único VPS, um firewall bem configurado já cobre 95 % do valor.</li>
+      </ul>
+      <p>O princípio: ninguém deve conseguir chegar a um serviço que não precisa de ser público. A inacessibilidade é a melhor defesa.</p>
+
+      <h2>3. Atualizações — o que corrige sozinho</h2>
+      <p>É a parte mais aborrecida e a que mais ataques previne. A grande maioria dos comprometimentos em massa explora vulnerabilidades com patch disponível há semanas ou meses.</p>
+      <ul>
+        <li><strong>Atualizações automáticas de segurança, pelo menos.</strong> unattended-upgrades (Debian/Ubuntu) ativa-se com dois comandos e trabalha sozinho para pacotes de segurança.</li>
+        <li><strong>Verificar periodicamente o resto.</strong> <code>apt list --upgradable</code>, <code>dnf upgrade</code>, ou o gestor da sua distribuição. Ferramentas como o needrestart ajudam a detetar serviços que continuam com bibliotecas antigas carregadas em memória depois do update.</li>
+        <li><strong>Kernel incluído.</strong> Um reboot após atualizações de kernel é irritante, mas preferível a correr um kernel vulnerável. Quem não quer reboots manuais tem opções de kernel live-patching (kpatch, ksplice) — mas para a maioria, agendar reboots mensais é suficiente.</li>
+        <li><strong>Cadência acima de urgência.</strong> Um cron job ou rotina semanal de "verificar, atualizar, reiniciar se necessário" bate a reação a pânico quando sai um CVE no jornal.</li>
+      </ul>
+      <p>Nota honesta: atualizações não previnem tudo — zero-days existem. Mas eliminam o cenário mais comum, e é o melhor rácio esforço/benefício em toda esta lista.</p>
+
+      <h2>E depois?</h2>
+      <p>Quando as três camadas anteriores estiverem sólidas, aí sim: MAC (SELinux/AppArmor), monitorização centralizada de logs, backups testados, MFA em tudo. Mas nenhum destes compensa um root login aberto com palavra-passe de seis caracteres num sistema sem updates.</p>
+      <p>Hardening não é um produto que se instala; é uma disciplina de mínimos que se mantém. <strong>Contas primeiro, rede depois, updates sempre.</strong></p>
+
+      <a class="voltar" href="#blog">← Voltar ao blogue</a>
+    </article>
+  </div>
+
+  <div class="lang-en" lang="en">
+    <article class="post-article">
+      <p class="post-kicker">Blog · Linux Hardening</p>
+      <h1>Linux hardening notes</h1>
+      <p class="post-sub">Minimal hardening for a Linux system: accounts, networking and updates. The three things that matter most, in that order.</p>
+      <p class="post-meta"><time datetime="2026-10-14">10/14/2026</time> · ethics.click</p>
+
+      <p>There's a constant temptation when discussing Linux security: jump straight to SELinux, AppArmor, grsecurity, sandboxes, kernel modules… All legitimate topics, but all come after the essentials. If the foundation is weak, the rest is decoration.</p>
+      <p>This piece is a practical note: the minimum hardening I'd apply to any server or personal machine, with no exotic config files or niche tools. Three areas, in this order — because the order matters too.</p>
+
+      <h2>1. Accounts — who can get in</h2>
+      <p>Most intrusions start here: a weak password on an account, a shared SSH key, an overly generous sudo.</p>
+      <ul>
+        <li><strong>Disable direct root login.</strong> In <code>/etc/ssh/sshd_config</code>: <code>PermitRootLogin no</code>. Work from a regular user account and escalate with sudo.</li>
+        <li><strong>Key-based SSH authentication, not passwords.</strong> Generate Ed25519 keys, install the public key on the server, then set <code>PasswordAuthentication</code> to <code>no</code>. Guessable passwords are one bot away from being guessed.</li>
+        <li><strong>Make keys theft-resistant.</strong> Use a passphrase on the private key and, where possible, back it with a hardware key (YubiKey, Nitrokey). A stolen key with no passphrase is worth as much as a password on a post-it note.</li>
+        <li><strong>Audit who exists.</strong> Run <code>less /etc/passwd</code> now and then: remove orphaned accounts from former colleagues, old services, test accounts. Every account is a door.</li>
+        <li><strong>sudo under least privilege.</strong> Don't hand out <code>ALL=(ALL:ALL)</code> to everyone. Groups like <code>sudo</code> or <code>wheel</code> should have few members, and reviewing each member's <code>sudo -l</code> is worth the time.</li>
+        <li><strong>Block repeated attempts.</strong> fail2ban is nearly mandatory on internet-exposed machines: it automatically bans IPs with too many failed authentication attempts.</li>
+      </ul>
+      <p>The goal of this layer is simple: shrink the authentication surface to a small, known, auditable set of people and keys.</p>
+
+      <h2>2. Network — what's exposed</h2>
+      <p>Step two isn't protecting what's inside; it's deciding what answers to the outside world.</p>
+      <ul>
+        <li><strong>Inventory open ports.</strong> From another machine: <code>nmap -sV your-server-address</code>, or locally: <code>ss -tulpn</code>. Anything not needed should be closed or uninstalled — a service that's switched off is the only perfect firewall.</li>
+        <li><strong>Deny-by-default firewall.</strong> ufw (simple) or nftables/firewalld (more complete). Baseline rule: deny everything, explicitly allow what you need (SSH, HTTPS, whatever you serve). On a private server, go further: SSH only from known ranges, for example.</li>
+        <li><strong>Harden SSH itself.</strong> Changing the port is cosmetic (it's less log noise, not security); what actually changes the game is restricting users (<code>AllowUsers</code>), disabling password auth, and turning off unnecessary forwarding.</li>
+        <li><strong>Encrypt everything in transit.</strong> HTTPS behind every public endpoint (Let's Encrypt handles the certificate), and internal service traffic too when it crosses hostile networks.</li>
+        <li><strong>Consider layered networking.</strong> In larger environments: VLANs, a DMZ for public services, databases that only answer on the internal network. At home or on a single VPS, a well-configured firewall already covers ~95% of the value.</li>
+      </ul>
+      <p>The principle: nobody should be able to reach a service that doesn't need to be public. Unreachability is the best defense.</p>
+
+      <h2>3. Updates — the fixes that ship themselves</h2>
+      <p>This is the most boring part and the one that prevents the most attacks. The vast majority of mass compromises exploit vulnerabilities whose patches have been available for weeks or months.</p>
+      <ul>
+        <li><strong>Enable automatic security updates, at the very least.</strong> unattended-upgrades (Debian/Ubuntu) takes two commands to set up and quietly handles security packages on its own.</li>
+        <li><strong>Check the rest periodically.</strong> <code>apt list --upgradable</code>, <code>dnf upgrade</code>, or your distribution's package manager. Tools like needrestart help spot services still running with old libraries loaded in memory after an update.</li>
+        <li><strong>Include the kernel.</strong> A reboot after kernel updates is annoying but preferable to running a vulnerable kernel. If you can't afford manual reboots, live-patching options exist (kpatch, ksplice) — but for most people, scheduling monthly reboots is enough.</li>
+        <li><strong>Rhythm beats urgency.</strong> A weekly cron job or routine — "check, update, reboot if needed" — beats panic-reacting whenever a CVE makes the news.</li>
+      </ul>
+      <p>An honest note: updates don't prevent everything — zero-days exist. But they eliminate the most common scenario, and they offer the best effort-to-benefit ratio on this entire list.</p>
+
+      <h2>What comes after?</h2>
+      <p>Once those three layers are solid, then yes: MAC (SELinux/AppArmor), centralized log monitoring, tested backups, MFA everywhere. But none of that compensates for an open root login with a six-character password on a system without updates.</p>
+      <p>Hardening isn't a product you install; it's a discipline of minimums you maintain. <strong>Accounts first, network second, updates always.</strong></p>
+
+      <a class="voltar" href="#blog">← Back to the blog</a>
+    </article>
+  </div>
+</section>
+
+<!-- Artigo integrado: FLOSS — segurança orientada pela comunidade -->
+<section id="post-floss" class="post-view" hidden>
+  <div class="lang-pt" lang="pt-PT">
+    <article class="post-article">
+      <p class="post-kicker">Blogue · Software Livre</p>
+      <h1>FLOSS: segurança orientada pela comunidade</h1>
+      <p class="post-sub">Porque é que o software livre e de código aberto é o fundamento da transparência — e porque é que a auditoria coletiva supera qualquer promessa fechada.</p>
+      <p class="post-meta"><time datetime="2026-09-30">30/09/2026</time> · ethics.click</p>
+
+      <p>Todo o software que utiliza é uma promessa. Quando instala uma aplicação, ativa um serviço ou sincroniza os seus contactos, está a confiar que o código por trás faz exatamente o que diz fazer — nem mais, nem menos. Com software proprietário, essa promessa é opaca: pede-se que confie na palavra de um fornecedor, numa página de marketing, numa política de privacidade escrita por juristas. Com software livre e de código aberto (FLOSS), a promessa é inspecionável. O código-fonte está lá, ao alcance de qualquer pessoa, para ser lido, compilado, verificado e — crucialmente — desafiado.</p>
+      <p>Esta diferença não é um adorno filosófico. É a diferença estrutural entre <strong>«confie em mim»</strong> e <strong>«verifique-me»</strong>.</p>
+
+      <h2>Transparência não é uma funcionalidade; é uma pré-condição</h2>
+      <p>A segurança de código fechado assenta no pressuposto de que segredo equivale a segurança — a chamada «segurança pela obscuridade». O problema é que a obscuridade protege os atacantes tanto como os defensores: se ninguém fora do fornecedor consegue ler o código, também ninguém fora do fornecedor o consegue auditar. A história mostrou repetidamente o que acontece a seguir: portas traseiras descobertas anos após a implantação, telemetria a que ninguém consentiu, fragilidades criptográficas que sobreviveram precisamente <em>porque</em> poucos olhos as observavam.</p>
+      <p>O código aberto inverte o modelo. A Lei de Linus — <em>«com olheiros suficientes, todos os erros são superficiais»</em> — não é uma garantia, mas é uma assimetria poderosa: cada publicação de código-fonte cria um fornecimento ilimitado de revisores independentes, enquanto um fornecedor fechado tem apenas a sua própria folha de salários.</p>
+
+      <h3>Auditoria coletiva na prática</h3>
+      <p>A segurança orientada pela comunidade não é teórica. Manifesta-se assim:</p>
+      <ul>
+        <li><strong>Reprodução independente.</strong> As compilações reprodutíveis permitem a qualquer pessoa confirmar que um binário publicado foi realmente compilado a partir do código-fonte publicado. A confiança desloca-se do distribuidor para a matemática.</li>
+        <li><strong>Resposta rápida.</strong> Quando uma vulnerabilidade é divulgada numa biblioteca aberta de uso generalizado, as correções costumam tornar-se públicas em poucas horas — juntamente com toda a discussão sobre o funcionamento da falha. Essa transparência acelera a defesa de todo o ecossistema, e não apenas de um produto.</li>
+        <li><strong>Confiança distribuída.</strong> Nenhuma entidade única controla o rumo de projetos como o Linux, o OpenSSL ou as bibliotecas de protocolo do Signal. Não existe um ponto único de falha corporativa — nem de captura corporativa.</li>
+        <li><strong>Sobrevivência a longo prazo.</strong> O código publicado sob uma licença livre pode ser derivado, mantido e auditado por sucessores mesmo que o projeto original desapareça. A sua segurança não expira com uma empresa.</li>
+      </ul>
+
+      <h3>Ressalas honestas</h3>
+      <p>A auditoria coletiva não é magia. Incidentes célebres — o Heartbleed no OpenSSL, a tentativa de porta traseira no xz-utils em 2024 — ocorreram em código aberto. A lição não é que a abertura falhou; é que a abertura funciona <em>quando as pessoas participam efetivamente</em>. O software livre precisa de financiamento sustentado, o esgotamento dos mantenedores é real, e os «muitos olhos» só contam se forem competentes e motivados. O caso do xz, aliás, foi detetado <em>precisamente porque</em> o processo era transparente — um engenheiro atento notou uma anomalia de meio segundo no desempenho e puxou o fio.</p>
+      <p>A comparação justa, portanto, não é «o aberto é sempre mais seguro», mas sim: <strong>com FLOSS, as falhas são detetáveis; com software fechado, raramente saberá.</strong></p>
+
+      <h3>O que isto significa para si</h3>
+      <p>Escolher FLOSS é escolher o alinhamento de incentivos: programadores que respondem perante utilizadores e pares, e não perante acionistas e mercados publicitários. Significa privilegiar ferramentas onde os investigadores de segurança <em>podem</em> olhar por baixo do capô, onde as dependências são declaradas em vez de ocultas, e onde é a comunidade — e não um departamento jurídico — que define a responsabilização.</p>
+      <p>A transparência não torna o software perfeito. Torna-o <em>responsabilizável</em>. E em segurança, a responsabilização é a única promessa que vale a pena manter.</p>
+
+      <a class="voltar" href="#blog">← Voltar ao blogue</a>
+    </article>
+  </div>
+
+  <div class="lang-en" lang="en">
+    <article class="post-article">
+      <p class="post-kicker">Blog · Free &amp; Open Source</p>
+      <h1>FLOSS: community-driven security</h1>
+      <p class="post-sub">Why free and open source software is the foundation of transparency — and why collective auditing beats any closed promise.</p>
+      <p class="post-meta"><time datetime="2026-09-30">09/30/2026</time> · ethics.click</p>
+
+      <p>Every piece of software you run is a promise. When you install an app, enable a service, or sync your contacts, you're trusting that the code behind it does exactly what it claims — no more, no less. With proprietary software, that promise is opaque: you're asked to trust a vendor's word, a marketing page, a privacy policy written by lawyers. With free and open source software (FLOSS), the promise is inspectable. The source code is there, for anyone, to read, build, verify, and — crucially — to challenge.</p>
+      <p>This difference isn't philosophical garnish. It's the structural difference between <strong>"trust me"</strong> and <strong>"verify me."</strong></p>
+
+      <h2>Transparency isn't a feature; it's a precondition</h2>
+      <p>Closed-source security rests on the assumption that secrecy equals safety — the so-called "security through obscurity." The problem is that obscurity protects attackers as much as defenders: if nobody outside the vendor can read the code, nobody outside the vendor can audit it either. History has repeatedly shown what happens next: backdoors discovered years after deployment, telemetry nobody agreed to, cryptographic weaknesses that survived precisely <em>because</em> so few eyes were looking.</p>
+      <p>Open source inverts the model. Linus's Law — <em>"given enough eyeballs, all bugs are shallow"</em> — is not a guarantee, but it's a powerful asymmetry: every publication of source code creates an unlimited supply of independent reviewers, while a closed vendor has only its own payroll.</p>
+
+      <h3>Collective auditing in practice</h3>
+      <p>Community-driven security isn't theoretical. It looks like this:</p>
+      <ul>
+        <li><strong>Independent reproduction.</strong> Deterministic builds and reproducible builds let anyone confirm that a published binary was really compiled from the published source. Trust shifts from the distributor to mathematics.</li>
+        <li><strong>Rapid response.</strong> When a vulnerability is disclosed in a widely used open library, patches are typically public within hours — along with the full discussion of how the bug worked. That transparency accelerates the entire ecosystem's defence, not just one product's.</li>
+        <li><strong>Distributed trust.</strong> No single entity controls the roadmap of projects like Linux, OpenSSL, or Signal's protocol libraries. There is no single point of corporate failure — or corporate capture.</li>
+        <li><strong>Long-term survivability.</strong> Code released under a free licence can be forked, maintained, and audited by successors even if the original project disappears. Your security doesn't expire with a company.</li>
+      </ul>
+
+      <h3>Honest caveats</h3>
+      <p>Collective auditing is not magic. Famous incidents — Heartbleed in OpenSSL, the xz-utils backdoor attempt in 2024 — happened in open code. The lesson isn't that openness failed; it's that openness works <em>when people actually participate</em>. Open source needs sustained funding, maintainer burnout is real, and "many eyes" only matter if those eyes are skilled and motivated. The xz case, in fact, was caught <em>because</em> the process was transparent — an observant engineer noticed a half-second performance anomaly and pulled the thread.</p>
+      <p>The fair comparison, then, is not "open is always safer" but: <strong>with FLOSS, failures are discoverable; with closed software, you'll rarely know.</strong></p>
+
+      <h3>What this means for you</h3>
+      <p>Choosing FLOSS is choosing alignment of incentives: developers who answer to users and peers rather than to shareholders and ad markets. It means preferring tools where security researchers <em>can</em> look under the hood, where dependencies are declared rather than hidden, and where the community — not a legal department — defines accountability.</p>
+      <p>Transparency doesn't make software perfect. It makes software <em>accountable</em>. And in security, accountability is the only promise worth keeping.</p>
+
+      <a class="voltar" href="#blog">← Back to the blog</a>
+    </article>
+  </div>
+</section>
     <div class="quote-wrap">
       <p class="about-text" data-i18n="quote">Sem privacidade, não existe liberdade; sem liberdade, nenhuma segurança merece ser desejada</p>
     </div>
   </main>
 
   <footer>
-    <p><span data-i18n="footerNote">Sem cookies, sem rastreio, sem JavaScript além de um seletor de tema e idioma.</span>
+    <p><span data-i18n="footerNote">sem cookies, sem rastreio, sem JavaScript além de um seletor de tema e idioma.</span>
        © <span id="year">2026</span> <span data-i18n="brand">ethics.click</span></p>
   </footer>
 
