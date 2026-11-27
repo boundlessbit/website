@@ -23,9 +23,10 @@ const PERFIL = {
    completo (título, data, excerto e botão) automaticamente.
    "cta" é opcional — se omitido, usa a etiqueta padrão do idioma.          */
 const POSTS = [
-  { key: "post1", date: "2026-11-02", url: "/posts/post-one/",   cta: "Ler artigo →" },
-  { key: "post2", date: "2026-10-14", url: "/posts/post-two/",   cta: "Ler artigo →" },
-  { key: "post3", date: "2026-09-30", url: "/posts/post-three/" }
+  { key: "post4", date: "2026-11-27", url: "#post-extreme" },
+  { key: "post1", date: "2026-11-02", url: "#post-opsec" },
+  { key: "post2", date: "2026-10-14", url: "#post-hardening" },
+  { key: "post3", date: "2026-09-30", url: "#post-floss" }
 ];
 
 /* ---- i18n --------------------------------------------------------------- */
@@ -74,6 +75,8 @@ const I18N = {
     post2Excerpt: "Reforço mínimo de um sistema Linux: contas, rede e atualizações. As três coisas que mais importam, por esta ordem.",
     post3Title: "FLOSS: segurança orientada pela comunidade",
     post3Excerpt: "Porque o software livre e open source é a base da transparência — e porque a auditoria coletiva vale mais do que qualquer promessa fechada.",
+    post4Title: "Extreme Privacy: as 20 ações essenciais",
+    post4Excerpt: "O manual que o ex-investigador do FBI entregava a novos clientes: 20 ações concretas, em seis fases, para tornar a sua vida online radicalamente mais difícil de rastrear — e o essencial que qualquer pessoa pode começar hoje.",
     contactTitle: "Contacto",
     contactIntro: "Um clique abre a conversa diretamente — e o contacto fica visível no cartão para poder guardá-lo ou copiá-lo.",
     cmEmailTitle: "Email",
@@ -100,7 +103,7 @@ const I18N = {
     cmPhoneCon1: "Chamadas e SMS não são encriptadas",
     cmPhoneCon2: "Expõe o número e fica sujeito a interceção na rede",
     quote: "Sem privacidade, não existe liberdade; sem liberdade, nenhuma segurança merece ser desejada",
-    footerNote: "Sem cookies, sem rastreio, sem JavaScript além de um seletor de tema e idioma."
+    footerNote: "sem cookies, sem rastreio, sem JavaScript além de um seletor de tema e idioma."
   },
   "en-US": {
     siteTitle: "ethics.click",
@@ -146,6 +149,8 @@ const I18N = {
     post2Excerpt: "Minimal hardening for a Linux system: accounts, networking and updates. The three things that matter most, in that order.",
     post3Title: "FLOSS: community-driven security",
     post3Excerpt: "Why free and open source software is the foundation of transparency — and why collective auditing beats any closed promise.",
+    post4Title: "Extreme Privacy: the 20 must-do actions",
+    post4Excerpt: "The playbook a former FBI investigator handed new clients: 20 concrete actions, in six phases, to make your online life radically harder to track — and the essentials anyone can start today.",
     contactTitle: "Contact",
     contactIntro: "One click opens the conversation directly — and the contact stays visible on the card so you can save or copy it.",
     cmEmailTitle: "Email",
@@ -288,6 +293,18 @@ function slideBy(dir) {
   track.scrollBy({ left: dir * step, behavior: "smooth" });
 }
 
+/* ---- Artigos integrados: mostra/esconde conforme o hash ------------------ */
+function syncPostView() {
+  const id = decodeURIComponent(location.hash.slice(1));
+  let opened = null;
+  for (const view of document.querySelectorAll(".post-view")) {
+    const isOpen = view.id === id;
+    view.hidden = !isOpen;
+    if (isOpen) opened = view;
+  }
+  if (opened) opened.scrollIntoView({ behavior: "smooth" });
+}
+
 /* ---- Contacto: um clique revela o contacto e comunica diretamente -------- */
 function buildContactLink(type) {
   const a = document.createElement("a");
@@ -361,6 +378,9 @@ function setupPhotoProtection() {
     applyPhotoForTheme();
   });
 }
+
+window.addEventListener("hashchange", syncPostView);
+syncPostView(); // cobre a chegada a index.html#post-opsec por link direto
 
 /* ---- Arranque ------------------------------------------------------------ */
 document.addEventListener("DOMContentLoaded", () => {
